@@ -112,7 +112,7 @@
                                 </div>
                                 <div id="reviews" class="container tab-pane fade">
                                     <div class="reviews-submitted">
-                                        <div class="reviewer">Phasellus Gravida - <span>01 Jan 2020</span></div>
+                                        <div class="reviewer">Phasellus Gravida - <span>01 Jan gregyewtg fgdrh 2020</span></div>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
