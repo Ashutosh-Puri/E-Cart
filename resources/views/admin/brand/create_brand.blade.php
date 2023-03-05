@@ -12,8 +12,21 @@
                 <div class="card-body">
                     <form method="POST" action="{{  route('brand.store') }}">
                         @csrf
-
                         <div class="row mb-3">
+                            <label for="name" class="col-12 col-md-1 form-label my-3 ">{{ __(' Category') }}</label>
+                            <div class="col-12 col-md-5  ">
+                                <select class="form-control text-center @error('category_id') is-invalid @enderror" name="category_id" autocomplete="category_id" autofocus>
+                                        <option hidden>-- Select Category --</option>
+                                    @foreach ($categories as $c)
+                                        <option class="text-start "  {{ (old('category_id')==$c->id)?'selected':''; }} value="{{ $c->id }}">{{ $c->name }}</option>
+                                    @endforeach
+                                </select>
+                                    @error('category_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                            </div>
                             <label for="name" class="col-12 col-md-1 form-label ">{{ __('Name') }}</label>
                             <div class="col-12 col-md-5 ">
                                 
@@ -34,9 +47,6 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-                        
-                        <div class="row mb-3">
                             <div class="col-md-6 py-3">
                                 <label for="status" class="form-label   ">{{ __('Status') }}</label>
                                 <input type="checkbox" name="status" id="status"class="form-check-inline mx-5 @error('status') is-invalid @enderror" {{ old('status')==true ? 'checked':'' ;}}  autocomplete="status">

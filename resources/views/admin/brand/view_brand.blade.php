@@ -25,6 +25,7 @@
                         <thead class="thead-inverse">
                             <tr>
                                 <th>ID</th>
+                                <th>Category</th>
                                 <th>Name</th>
                                 <th>Slug</th>
                                 <th>Status</th>
@@ -35,6 +36,7 @@
                             @forelse ($brands as $i)
                                 <tr>
                                     <td scope="row">{{ $i->id }}</td>
+                                    <td> {{ $i->category->name }}</td>
                                     <td> {{ $i->name }}</td>
                                     <td> {{ $i->slug}}</td>
                                     <td>{{ $i->status== 0 ?'Active':'In Active'; }}</td>

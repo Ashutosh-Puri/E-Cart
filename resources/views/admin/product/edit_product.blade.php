@@ -3,6 +3,17 @@
 
     <div class="row w-100 m-0">
         <div class="col m-0 p-0">
+            <div class="col m-0 p-0">
+                @if (session('s-status'))
+                    <div class="alert alert-success" role="alert">
+                            {{ session('s-status') }}
+                    </div>
+                @endif
+                @if (session('d-status'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('d-status') }}
+                    </div>
+                @endif
             <div class="card">
                 <div class="card-header bg-custom fw-bold text-white">
                     Edit Product
@@ -197,7 +208,7 @@
                                 @forelse ($colors as $col)
                                     <div class="p-2 border d-inline-block" style="width:100px;">
                                         Color:<br>
-                                        <input id="color" class="mx-1" type="checkbox"  value="{{ $col->id }}" class="form-checkbox " name="colors[{{ $col->id }}]" {{ old('color[]')==true?'checked':''; }}  autocomplete="color" autofocus>{{ $col->name }}
+                                        <input id="color" class="mx-1" type="checkbox"  value="{{ $col->id }}" class="form-checkbox " name="colors[{{ $col->id }}]"   autocomplete="color" autofocus>{{ $col->name }}
                                        
                                         Quantity:<br>
                                         <input type="number" class="" name="color_quantity[{{ $col->id }}]" style="width:70px;">
@@ -214,34 +225,7 @@
                         <div class="row">
                             <label for="selectedcolor" class="col-12 col-md-1 my-1 form-label ">{{ __('Selected Color') }}</label>
                             <div class="col-12 col-md-11 my-1 table-responsive">
-                                <table class="table table-sm table-striped table-bordered text-center table-inverse ">
-                                    <thead class="thead-inverse">
-                                        <tr>
-                                            
-                                            <th>Name</th>
-                                            <th>Quanity</th> 
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($product->productColors as $i)
-                                            <tr class="colorrow">
-                                                <td>{{ $i->colors->name}}</td>
-                                                <td>
-                                                    <div class="input-group " style="width:150px;">
-                                                        <input  type="text" value="{{ $i->color_quantity }}" class="upadtecolortext  form-control form-control-sm ">
-                                                        <button value="{{ $i->id }}"   class='upadtecolorbtn btn btn-success btn-sm'  >Update</button>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a href="{{ url('product/color/'.$i->id.'/delete') }}"   class='btn btn-danger btn-sm'>Delete</a>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                         <td colspan="3">No color Selected</td>
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                                @livewire('product-color',['pro'=>$product])
                             </div>
                         </div> 
                      
@@ -280,17 +264,17 @@
 @endsection
 
 @section('scripts')
-    <script>
+    {{-- <script>
         $(document).ready(function(){
                 $.ajaxSetup({
                  headers: {
                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-                $(document).on('click','.upadtecolorbtn',function(){
+                $(document).on('click','.updateproductcolorbtn',function(){
                 var product_id="{{ $product->id }}";
                 var product_color_id=$(this).val();
-                var quantity = $(this).closest('.colorrow').find('.upadtecolortext').val();
+                var quantity = $(this).closest('.productcolortr').find('.productcolorquantity').val();
                 if(quantity <= 0)
                 {   
                     alert('Color Quantity Is Required.');
@@ -301,10 +285,12 @@
                     'product_id':product_id,
                     'color_quantity':quantity,
                 };
+                var url='product/color/'+product_color_id;
                 $.ajax({
-                    type:'POST',
-                    url:'product/color/'+product_color_id+'/delete',
+                    type:'GET',
+                    url:url,
                     data:data,
+                    dataType: 'json',
                     success:function(response){
                         alert(response.message);
                     }
@@ -314,5 +300,5 @@
             
             });
         });
-    </script>
+    </script> --}}
 @endsection

@@ -1,16 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductColorController;
 
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 Auth::routes();
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('productlist', [HomeController::class, 'products']);
+Route::get('viewproduct/{product_id}', [HomeController::class, 'view_products']);
 
 
 
@@ -25,8 +32,10 @@ Auth::routes();
 Route::middleware(['auth','admin'])->group( function () {
 
     Route::get('product/{id}/delete', [ProductController::class,'delete']);
-    Route::get('product/color/{id}/delete', [ProductController::class,'color_delete']);
-    Route::post('product/color/{id}/update', [ProductController::class,'color_update']);
+ 
+
+
+    Route::get('product/{id}/product/color/{product_color_id}', [ProductColorController::class,'color_update']);
     Route::resources([
         'category' => CategoryController::class,
         'admin' => AdminController::class,

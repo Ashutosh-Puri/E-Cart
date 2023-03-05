@@ -174,6 +174,17 @@ class ProductController extends Controller
                
             }
         }
+        if($request->colors)
+        {
+            foreach($request->colors as $key=> $color)
+            {
+                $product->productColors()->create([
+                    'product_id'=> $product->id,
+                    'color_id'=> $color,
+                    'color_quantity'=> $request->color_quantity[$key]?? 0,
+                ]);
+            }
+        }
        
         return redirect()->route('product.index')->with('s-status','Product Updated Successfully.');
     }
@@ -209,16 +220,5 @@ class ProductController extends Controller
         return redirect()->back()->with('s-status','Product Image Deleted Successfully.');
     }
 
-    public function color_delete($id)
-    {   
-
-    }
-    public function color_update(Requset $request ,$id)
-
-    {   
-       $productcolor = Product::findOrFail($request->product_id)->productColors()->where('id',$id)->first();
-       $productcolor->color_quantity=$request->color_quantity;
-       $productcolor->update();
-       return response()->json(['message'=>'Product Color Quantity Updated Successfully.']);
-    }
+    
 }

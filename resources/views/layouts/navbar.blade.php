@@ -18,7 +18,7 @@
                         <a href="{{ url('/') }}" class="  nav-link {{ (request()->is('/')) ? 'active' : '' }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="products" class="nav-link    ">Products</a>
+                        <a href="productlist" class="nav-link  {{ (request()->is('productlist')) ? 'active' : '' }}   ">Products</a>
                     </li>
                     @guest
                         

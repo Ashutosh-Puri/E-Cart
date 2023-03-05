@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
@@ -35,7 +36,7 @@ class CategoryController extends Controller
     {  
         
         $category->name = $request['name'];
-        $category->slug = $request['slug'];
+        $category->slug = Str::slug($request['slug']) ;
         $category->description = $request['description']; 
         $category->meta_description = $request['meta_description'];
         $category->meta_title = $request['meta_title'];
@@ -70,7 +71,7 @@ class CategoryController extends Controller
     {   
 
             $category->name = $request['name'];
-            $category->slug = $request['slug'];
+            $category->slug = Str::slug($request['slug']) ;
             $category->description = $request['description']; 
             $category->meta_description = $request['meta_description'];
             $category->meta_title = $request['meta_title'];

@@ -24,6 +24,7 @@
                         <thead class="thead-inverse">
                             <tr>
                                 <th>ID</th>
+                                <th>Category</th>
                                 <th>Name</th>
                                 <th>Slug</th>
                                 <th>Status</th>                              
@@ -31,6 +32,7 @@
                         </thead>
                         <tbody>
                                 <tr>
+                                    <td> {{ $brand->category->name }}</td>
                                     <td scope="row">{{ $brand->id }}</td>
                                     <td> {{ $brand->name }}</td>
                                     <td>{{ $brand->slug}}</td>

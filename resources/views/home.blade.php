@@ -23,32 +23,21 @@
                 <div class="col-md-3">
                     <nav class="navbar bg-custom">
                         <ul class="navbar-nav px-3">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class=" px-2 fa fa-home "></i>Home</a>
+                            <li class="nav-item ">
+                               <p class="text-center fw-bold">Categories</p> 
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class=" px-2  fa fa-shopping-bag"></i>Best Selling</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="px-2 fa fa-plus-square"></i>New Arrivals</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="px-2 fa fa-female"></i>Fashion & Beauty</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="px-2 fa fa-child"></i>Kids & Babies Clothes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="px-2 fa fa-tshirt"></i>Men & Women Clothes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="px-2 fa fa-mobile-alt"></i>Gadgets &
-                                    Accessories</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="px-2 fa fa-microchip"></i>Electronics &
-                                    Accessories</a>
-                            </li>
+                            @forelse ($categories as $c)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('cate/'.$c->slug) }}"><i class=" px-2 fa fa-home "></i>{{ $c->name }}</a>
+                                </li>
+                            @empty
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class=" px-2 fa fa-home "></i> No categories Found</a>
+                                </li>
+                            @endforelse
+                            {{ $categories->links('pagination::bootstrap-5') }}
+                            
+                            
                         </ul>
                     </nav>
                 </div>

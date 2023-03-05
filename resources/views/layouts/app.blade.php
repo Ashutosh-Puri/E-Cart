@@ -33,7 +33,8 @@
 
 
     @livewireScripts
-    {{-- <script src="{{ url('js/bootstrap.bundle.min.js') }}"></script> --}}
+    <script src="{{ url('/livewire/livewire.js') }}"></script>
+    <script src="{{ url('js/jquery.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     @yield('scripts')
 </body>
