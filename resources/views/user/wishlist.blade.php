@@ -2,7 +2,6 @@
 
 @section('content')
 
-    @livewire('products')
-          
+@livewire('wishlist-show')
 
 @endsection

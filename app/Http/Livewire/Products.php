@@ -6,6 +6,8 @@ use App\Models\Brand;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\Wishlist;
+use Illuminate\Support\Facades\Auth;
 
 class Products extends Component
 {  
@@ -16,15 +18,41 @@ class Products extends Component
     
 
     protected $queryString =['brandInputs','categoryInputs','priceInputs'];
+    public function addToWishlist($prodId)
+    {
+        if(Auth::check())
+        {   
+            if(Wishlist::where('user_id',Auth::user()->id)->where('product_id',$prodId)->exists())
+            {
+                session()->flash('d-status','Already Added To Wishlist.');
+            }
+            else
+            {
+                Wishlist::create([
+                    'user_id'=>Auth::user()->id,
+                    'product_id'=>$prodId,
+    
+                ]);
+                session()->flash('s-status','Wishlist Added Successfully.');
+            }
+            
+        }
+        else
+        {   
+            session()->flash('d-status','Plase Login To Continue.');
+            return false;
+        }
+    }
 
     public function render()
     {   
         $categories =Category::where('status','0')->get();
-        $brands = Brand::where('status','0')
-         ->when($this->categoryInputs ,function($c){
+
+        $brands = Brand::
+         when($this->categoryInputs ,function($c){
 
             $c->whereIn('category_id',$this->categoryInputs);
-        })->get();
+        })->where('status','0')->get();
 
         $products =Product::when($this->categoryInputs ,function($c){
             $c->whereIn('category_id',$this->categoryInputs);

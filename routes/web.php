@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductColorController;
 
@@ -50,7 +51,7 @@ Route::middleware(['auth','admin'])->group( function () {
     
 
 Route::middleware(['auth'])->group( function () {
-
+    Route::get('wishlist', [WishlistController::class, 'index']);
     Route::resources([
         'user' => UserController::class,
         

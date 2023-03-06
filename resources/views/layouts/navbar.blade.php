@@ -18,7 +18,7 @@
                         <a href="{{ url('/') }}" class="  nav-link {{ (request()->is('/')) ? 'active' : '' }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="productlist" class="nav-link  {{ (request()->is('productlist')) ? 'active' : '' }}   ">Products</a>
+                        <a href="{{ url('productlist') }}" class="nav-link  {{ (request()->is('productlist')) ? 'active' : '' }}   ">Products</a>
                     </li>
                     @guest
                         
@@ -105,15 +105,18 @@
             </div>
             <div class=" col-4 col-md-4   p-0 m-0">
                 <div class=" float-end ">
-                    <a href="wishlist.html" class="btn btn-custom   mx-2">
+                    <a href="{{ url('wishlist') }}" class="btn btn-custom   mx-2">
                         <i class="fa fa-heart"></i>
-                        <span>(0)</span>
+                        <span>(@livewire('wishlist-count')) </span>
                     </a>
-                    <a href="cart.html" class="btn btn-custom mx-2">
+                    
+                    <a href="{{ url('cart') }}" class="btn btn-custom mx-2">
                         <i class="fa fa-shopping-cart"></i>
                         <span>(0)</span>
                     </a>
                 </div>
+             
+               
             </div>
         </div>
     </div>
