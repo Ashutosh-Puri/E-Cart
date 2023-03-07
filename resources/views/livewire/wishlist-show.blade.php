@@ -55,7 +55,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5"> Items Not Added Yet.</td>
+                                        <td colspan="5" class="text-white"> Items Not Added Yet.</td>
                                     </tr>
                                     
                                 @endforelse

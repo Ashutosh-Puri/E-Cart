@@ -22,7 +22,7 @@ class ProductDetails extends Component
     }
     public function decrementQuantity()
     {  
-        if($this->quantityCount >=1)
+        if($this->quantityCount >1)
         {
             $this->quantityCount--;
         }
@@ -45,18 +45,19 @@ class ProductDetails extends Component
                         if($PC->color_quantity>0)
                         {
                             if($PC->color_quantity > $this->quantityCount )
-                            {
+                            {   
                                 Cart::create([
                                     'user_id'=>auth()->user()->id,
                                     'product_id'=>$prodId,
                                     'product_color_id'=>$this->prodcolorid,
                                     'quantity'=>$this->quantityCount
                                 ]);
-                                session()->flash('s-status','product Added To Cart.');
+                                $this->emit('updatecartcount');
+                                session()->flash('s-status','Product Added To Cart.');
                             }
                             else
                             {
-                                session()->flash('d-status','Only '.$PC->color_quantity.' Quantity available.');
+                                session()->flash('d-status','Only '.$PC->color_quantity.' Quantity Available.');
                             }
                         }
                         else
@@ -74,17 +75,18 @@ class ProductDetails extends Component
                     if($product->quantity>0)
                     {
                         if($product->quantity > $this->quantityCount)
-                        {
+                        {   
                             Cart::create([
                                 'user_id'=>auth()->user()->id,
                                 'product_id'=>$prodId,
                                 'quantity'=>$this->quantityCount
                             ]);
-                            session()->flash('s-status','product Added To Cart.');
+                            $this->emit('updatecartcount');
+                            session()->flash('s-status','Product Added To Cart.');
                         }
                         else
                         {
-                            session()->flash('d-status','Only '.$product->quantity .' Quantity available.');
+                            session()->flash('d-status','Only '.$product->quantity .' Quantity Available.');
                         }
                     }
                     else

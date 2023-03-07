@@ -95,7 +95,7 @@
     <!-- Bottom Bar Start -->
     <div class="container-fluid m-0 p-0 bg-custom  ">
         <div class="row m-0 py-2">
-            <div class=" col-8 col-md-8    m-0 ">
+            <div class=" col-7 col-md-8     m-0 ">
                 <div class="input-group  ">
                     <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username"
                         aria-describedby="basic-addon2">
@@ -103,16 +103,16 @@
                             class="p-1 fa fa-search"></i></span>
                 </div>
             </div>
-            <div class=" col-4 col-md-4   p-0 m-0">
-                <div class=" float-end ">
-                    <a href="{{ url('wishlist') }}" class="btn btn-custom   mx-2">
+            <div class=" col-5 col-md-4  p-0 m-0">
+                <div class=" float-end mx-1 ">
+                    <a href="{{ url('wishlist') }}" class="btn btn-custom  ">
                         <i class="fa fa-heart"></i>
-                        <span>(@livewire('wishlist-count')) </span>
+                        <span> (@livewire('wishlist-count')) </span>
                     </a>
                     
-                    <a href="{{ url('cart') }}" class="btn btn-custom mx-2">
+                    <a href="{{ url('cart') }}" class="btn btn-custom ">
                         <i class="fa fa-shopping-cart"></i>
-                        <span>(0)</span>
+                        <span> (@livewire('cart-count'))</span>
                     </a>
                 </div>
              

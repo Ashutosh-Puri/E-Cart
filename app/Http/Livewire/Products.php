@@ -18,6 +18,8 @@ class Products extends Component
     
 
     protected $queryString =['brandInputs','categoryInputs','priceInputs'];
+   
+   
     public function addToWishlist($prodId)
     {
         if(Auth::check())

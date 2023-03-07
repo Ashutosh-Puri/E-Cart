@@ -96,10 +96,10 @@
                         </div>
                         <div class="p-4">
                             <div class="  fs-2 text-center my-2 ">
-                                <a href="#" class="btn btn-custom mx-1 "><i class="fa fa-cart-plus"></i></a>
-                               <button type="button" wire:click="addToWishlist({{ $p->id }})" class="btn btn-custom mx-1" ><i class="fa fa fa-heart"></i></button>
+                                {{-- <button type="button" wire:click="addToCart({{ $p->id }})" class="btn btn-custom mx-1" ><i class="fa fa-cart-plus"></i></button> --}}
+                                <button type="button" wire:click="addToWishlist({{ $p->id }})" class="btn btn-custom mx-1" ><i class="fa fa fa-heart"></i></button>
   
-                                <a href="#" class="btn btn-custom mx-1"><i class="fa fa-search"></i></a>
+                                {{-- <a href="#" class="btn btn-custom mx-1"><i class="fa fa-search"></i></a> --}}
                             </div>
                             <span class="h2"><span class="">&#8377;</span>{{ $p->selling_price }}</span>&nbsp;<span class="text-danger text-decoration-line-through">&#8377; {{ $p->orignal_price }}</span>
                             <a href="{{ url('viewproduct/'.$p->id) }}" class="btn btn-custom float-end card-link"> <i class="fa fa-shopping-cart"></i> &nbsp; Buy Now</a>
