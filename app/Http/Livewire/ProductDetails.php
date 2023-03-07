@@ -44,7 +44,7 @@ class ProductDetails extends Component
                         $PC =$product->productColors()->where('id',$this->prodcolorid)->first();
                         if($PC->color_quantity>0)
                         {
-                            if($PC->color_quantity > $this->quantityCount )
+                            if($PC->color_quantity >= $this->quantityCount )
                             {   
                                 Cart::create([
                                     'user_id'=>auth()->user()->id,
@@ -74,7 +74,7 @@ class ProductDetails extends Component
                 {
                     if($product->quantity>0)
                     {
-                        if($product->quantity > $this->quantityCount)
+                        if($product->quantity >= $this->quantityCount)
                         {   
                             Cart::create([
                                 'user_id'=>auth()->user()->id,

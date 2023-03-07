@@ -72,16 +72,15 @@
                 <div class="col-md-3">
                     <div class="bg-custom card my-1 product-card ">
                         <div class=" card-header text-center fw-bold fs-4 p-0">
-                            <small class=' mx-4 fs-5 text-warning float-start'>{{ $p->brands->name }}</small>
+                            <span class=' mx-4 fs-5 text-warning float-start'>{{ $p->brands->name }}</span>
                             
                             @if ($p->quantity > 0)
-                                <p class=" btn btn-success btn-sm float-end">In Stock</p>
+                                <span class=" btn btn-success btn-sm float-end">In Stock</span>
                             @else
-                                <p class="btn btn-danger btn-sm float-end">Out Of Stock</p>
+                                <span class="btn btn-danger btn-sm float-end">Out Of Stock</span>
                             @endif
                             <br>
-                            <a href="{{ url('viewproduct/'.$p->id) }}"
-                                class="text-decoration-none  card-link  text-white">{{ $p->name }}</a>
+                            <a href="{{ url('viewproduct/'.$p->id) }}"class="text-decoration-none  float-none  text-white">{{ $p->name }}</a>   
                         </div>
                         <div class="card-body"style="height: 300px;  width:100%;">
                             @if ( isset($p->productImages[0]))

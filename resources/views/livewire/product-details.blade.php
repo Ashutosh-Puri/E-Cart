@@ -85,9 +85,9 @@
                                                 <td><span class="h4  ">Stock:</span></td> 
                                                 <td colspan=2>
                                                     @if ($p->quantity >0 )
-                                                        <label class="btn-success btn-sm btn " for="">In Stock</label>
+                                                        <label class="btn-success btn-sm btn " for=""> ( {{ $p->quantity }} ) In Stock</label>
                                                     @else 
-                                                        <label class="btn-danger btn-sm btn label-stock " for="">Out Of Stock</label>
+                                                    <label class="btn-danger btn-sm btn label-stock " for="">Out Of Stock</label>
                                                     @endif
                                                 </td>
                                                

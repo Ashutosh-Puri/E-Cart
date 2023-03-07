@@ -60,7 +60,7 @@ class Checkout extends Component
             }
             else
             {
-                $cartitem->product()->where('id',$cartitem->product_id)->decrement('color_quantity',$cartitem->quantity);
+                $cartitem->product()->where('id',$cartitem->product_id)->decrement('quantity',$cartitem->quantity);
             }
              
         }
