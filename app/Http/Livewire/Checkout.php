@@ -3,13 +3,91 @@
 namespace App\Http\Livewire;
 
 use App\Models\Cart;
+use App\Models\Order;
 use Livewire\Component;
+use App\Models\Orderitem;
+use Illuminate\Support\Str;
 
 class Checkout extends Component
-{   public $carts;
-    public $totalproductamount;
-    public function totalproductamount()
+{   public $carts,$payment_mode,$payment_id=NULL;
+    public $totalproductamount=0;
+    public $fullname,$mobile,$email,$address,$city,$country,$pincode,$state;
+
+    public function rules()
     {
+        return [
+
+            'fullname'=>['required','string','max:150'],
+            'mobile'=>['required','integer','digits:10'],
+            'email'=>['required','email'],
+            'address'=>['required','string','max:500'],
+            'city'=>['required','string','max:150'],
+            'country'=>['required','string','max:150'],
+            'state'=>['required','string','max:150'],
+            'pincode'=>['required','integer','digits:6'],
+        ];
+    }
+    public function placeOrder()
+    {  
+        $this->validate();
+        $address =$this->address.', '.$this->city.', '.$this->state.', '.$this->country;
+        $order=Order::create([
+
+            'user_id'=>auth()->user()->id,
+            'fullname'=>$this->fullname,
+            'email'=>$this->email,
+            'phone'=>$this->mobile,
+            'tracking_no'=> 'track-'.Str::random(10),
+            'pincode'=>$this->pincode,
+            'address'=>$address,
+            'status_message'=>"In Progress",
+            'payment_id'=>$this->payment_id,
+            'payment_mode'=>$this->payment_mode,
+        ]);
+        foreach($this->carts as $cartitem)
+        {
+            $orderitems= Orderitem::create([
+                'order_id'=>$order->id,
+                'product_id'=>$cartitem->product_id,
+                'product_color_id'=>$cartitem->product_color_id,
+                'quantity'=>$cartitem->quantity,
+                'price'=>$cartitem->product->selling_price,
+            ]);
+
+            if($cartitem->product_color_id != NULL)
+            {
+                $cartitem->productColor()->where('id',$cartitem->product_color_id)->decrement('color_quantity',$cartitem->quantity);
+            }
+            else
+            {
+                $cartitem->product()->where('id',$cartitem->product_id)->decrement('color_quantity',$cartitem->quantity);
+            }
+             
+        }
+        return $order;
+    }
+
+    public function codOrder()
+    {   
+        $this->payment_mode="Cash On Delivery";
+        $codorder= $this->placeOrder();
+        if($codorder)
+        {   
+            Cart::where('user_id',auth()->user()->id)->delete();
+            $this->emit('updatecartcount');
+            session()->flash('s-status','Order Placed Successfully.');
+            return redirect()->to('thankyou');
+        }
+        else
+        {
+            session()->flash('d-status','Failed To Place Order.');
+        }
+       
+    }
+
+    public function totalproductamount()
+    {   
+        $this->totalproductamount=0;
         $this->carts =Cart::where('user_id',auth()->user()->id)->get();
         foreach($this->carts as $cartitem)
         {
@@ -19,6 +97,8 @@ class Checkout extends Component
     }
     public function render()
     {   
+        $this->fullname= auth()->user()->name;
+        $this->email= auth()->user()->email;
         $this->totalproductamount =$this->totalproductamount();
         return view('livewire.checkout',['totalproductamount'=>$this->totalproductamount]);
     }

@@ -21,7 +21,7 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('productlist', [HomeController::class, 'products']);
 Route::get('viewproduct/{product_id}', [HomeController::class, 'view_products']);
-
+Route::get('thankyou', [HomeController::class, 'thankyou']);
 
 
 

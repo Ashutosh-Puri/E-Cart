@@ -24,14 +24,15 @@
                         
                     @else
                         <li class="nav-item">
-                            <a href="" class=" nav-link {{ (request()->is('cart')) ? 'active' : '' }} ">Cart</a>
+                            <a href="{{ url('wishlist') }}" class=" nav-link {{ (request()->is('wishlist')) ? 'active' : '' }} ">Wishlist</a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class=" nav-link {{ (request()->is('checkout')) ? 'active' : '' }}">Checkout</a>
+                            <a href="{{ url('cart') }}" class=" nav-link {{ (request()->is('cart')) ? 'active' : '' }} ">Cart</a>
                         </li>
-                        <li>
-                            <a href="" class="nav-link {{ (request()->is('wishlist')) ? 'active' : '' }}">Wishlist</a>
+                        <li class="nav-item">
+                            <a href="{{ url('checkout') }}" class=" nav-link {{ (request()->is('checkout')) ? 'active' : '' }}">Checkout</a>
                         </li>
+          
                     @endguest
                     <li class="nav-item">
                         <div class="dropdown">
@@ -39,7 +40,7 @@
                                 aria-expanded="true">More</a>
                             <div class="dropdown-menu bg-custom">
                                 
-                                <a href="" class="dropdown-item ">Contact Us</a>
+                                <a href="{{ url('contactus') }}" class="dropdown-item {{ (request()->is('contactus')) ? 'active' : '' }}">Contact Us</a>
                             </div>
                         </div>
                     </li>
@@ -109,14 +110,11 @@
                         <i class="fa fa-heart"></i>
                         <span> (@livewire('wishlist-count')) </span>
                     </a>
-                    
                     <a href="{{ url('cart') }}" class="btn btn-custom ">
                         <i class="fa fa-shopping-cart"></i>
                         <span> (@livewire('cart-count'))</span>
                     </a>
-                </div>
-             
-               
+                </div> 
             </div>
         </div>
     </div>

@@ -42,4 +42,9 @@ class HomeController extends Controller
         return view('productdetails',compact('product'));
 
     }
+    public function thankyou()
+    {   
+        return view('thankyou');
+
+    }
 }
