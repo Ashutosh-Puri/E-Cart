@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 ">
-                    <div class="bg-custom">
+                    <div class="bg-custom mb-4">
                         <div class="p-4 pb-0">
                             <div class=" p-4">
                                 <div class="row">
@@ -135,7 +135,7 @@
                                     </div>
                                     <hr>
                                 </div>
-                                <div class="container">
+                                <div wire:ignore class="container">
                                     <div class="nav text-center">
                                         <a wire:loading.attr="disabled" class="btn  fw-bold  active mx-1 btn-primary" data-bs-toggle="tab"
                                             href="#cod">Cash On Delivery</a>
@@ -145,7 +145,7 @@
                                     <div class="tab-content">
                                         <div id="cod" class="tab-pane fade active show in p-2">
                                             <h3>Cash On Delivery</h3>
-                                            <p>Ut enim ad minim veniam, quis nostrud exercitation </p>
+                                            <p></p>
                                             <div class="text-center">
                                                 <button  wire:loading.attr="disabled"  wire:click="codOrder" class="btn btn-warning fw-bold">
                                                     <span wire:loading.remove wire:target="codOrder">Place Order ( Cash On Delivery )</span>
@@ -155,7 +155,7 @@
                                         </div>
                                         <div id="opay" class="tab-pane fade">
                                             <h3>Online Payment</h3>
-                                            <p>Ut enim ad minim veniam, quis nostrud exercitation </p>
+                                            <p></p>
                                             <div class="text-center">
                                                 <button  wire:loading.attr="disabled" wire:click="opayOrder" class="btn btn-warning fw-bold">
                                                     <span wire:loading.remove wire:target="opayOrder">Pay Now ( Online Payment )</span>
@@ -176,7 +176,7 @@
                       <h4>No Items In Cart To Checkout</h4>   
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-custom" href="{{ url('productlist') }}">Shop Now</a>
+                        <a class="btn btn-custom" href="{{ url('productlist') }}"><i class="mx-2 fa fa-shopping-bag"> </i>Shop Now</a>
                     </div>
 
                   </div>

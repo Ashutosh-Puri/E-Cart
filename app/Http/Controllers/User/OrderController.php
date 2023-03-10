@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Order;
+use App\Models\Orderitem;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
-class UserController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('user.dashboard');
+    {   
+        $orders=Order::where('user_id',Auth::user()->id)->orderBy('created_at','DESC')->paginate(8);
+        return view('user.view_orders',compact('orders'));
     }
 
     /**
@@ -37,15 +40,17 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user): Response
-    {
-        //
+    public function show(Order $order)
+    {   
+       
+    //     $orders=Order::where('id',$order_id)->paginate(10);
+        return view('user.show_orders',compact('order'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user): Response
+    public function edit(string $id): Response
     {
         //
     }
@@ -53,7 +58,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user): RedirectResponse
+    public function update(Request $request, string $id): RedirectResponse
     {
         //
     }
@@ -61,7 +66,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user): RedirectResponse
+    public function destroy(string $id): RedirectResponse
     {
         //
     }

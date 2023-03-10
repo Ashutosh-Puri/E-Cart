@@ -75,20 +75,24 @@
                 <tr >
                     <td colspan="3" rowspan="2">
                         <marquee behavior="" direction="">
-                            <span class="text-white">
-                                Get Best Deals & Offers <a class="btn btn-link  fw-bold text-danger text-decoration-none " href="{{ url('productlist') }}"><i class="mx-2 fa fa-shopping-bag"> </i> Shop Now</a>
+                            <span class="text-white fs-3">
+                                Get Best Deals & Offers <a class="btn btn-link fs-3 fw-bold text-danger text-decoration-none " href="{{ url('productlist') }}"><i class="mx-2 fa fa-shopping-bag"> </i> Shop Now</a>
                             </span>
                         </marquee>
                     </td>
-                    <td colspan="3">
-                        <span class="text-white fw-bold ">Grand Total : </span>
+                    <td colspan="3" class="p-3">
+                       
+                        <span class="text-white fw-bold  ">Grand Total : </span>
                         <span class="text-warning  fw-bold  ">&#8377; {{ $grandtotal }}</span>
+                     
                         
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3">
-                        <a class="btn btn-warning fw-bold btn-sm  "href="{{ url('checkout') }}">Checkout</a>
+                    <td colspan="3" class="p-3">
+                       
+                        <a class="btn btn-warning fw-bold  "href="{{ url('checkout') }}">Checkout</a>
+                       
                     </td>
                 </tr>
         </table>  

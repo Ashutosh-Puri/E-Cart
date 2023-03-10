@@ -28,7 +28,14 @@
                             </li>
                             @forelse ($categories as $c)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('cate/'.$c->slug) }}"><i class=" px-2 fa fa-home "></i>{{ $c->name }}</a>
+                                    <a class="nav-link" href="{{ url('productlist?categoryInputs[0]='.$c->id) }}">
+                                        <table>
+                                            <tr >
+                                                <td ><i class="px-3 {{ $c->icon  }} " style="width: 50px;"></i></td>
+                                                <td>{{ $c->name }}</td>
+                                            </tr>
+                                        </table>   
+                                    </a>
                                 </li>
                             @empty
                                 <li class="nav-item">

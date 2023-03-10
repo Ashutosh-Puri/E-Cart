@@ -66,6 +66,23 @@ class Checkout extends Component
         }
         return $order;
     }
+    // public function opayOrder()
+    // {   
+    //     $this->payment_mode="Paid Online";
+    //     $opayorder= $this->placeOrder();
+    //     if($opayorder)
+    //     {   
+    //         Cart::where('user_id',auth()->user()->id)->delete();
+    //         $this->emit('updatecartcount');
+    //         session()->flash('s-status','Order Placed Successfully.');
+    //         return redirect()->to('thankyou');
+    //     }
+    //     else
+    //     {
+    //         session()->flash('d-status','Failed To Place Order.');
+    //     }
+       
+    // }
 
     public function codOrder()
     {   

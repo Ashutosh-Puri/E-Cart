@@ -34,9 +34,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             @forelse ($products as $i)
-                                <tr>
-                                    <td scope="row">{{ $i->id }}</td>
+                                <tr>  
+                                    <td scope="row">{{ $i->id}}</td>
                                     <td> {{ $i->categories->name}}</td>
                                     <td> {{ $i->brands->name}}</td>
                                     <td> {{ $i->name }}</td>

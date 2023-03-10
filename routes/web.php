@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
@@ -53,12 +54,12 @@ Route::middleware(['auth','admin'])->group( function () {
     
 
 Route::middleware(['auth'])->group( function () {
-    Route::get('wishlist', [WishlistController::class, 'index']);
-    Route::get('cart', [CartController::class, 'index']);
-    Route::get('checkout', [CheckoutController::class, 'index']);
+
     Route::resources([
-        'user' => UserController::class,
-        
+        'orders'=> OrderController::class,
+        'wishlist'=> WishlistController::class, 
+        'cart'=> CartController::class,
+        'checkout'=> CheckoutController::class
     ]);
     
 });

@@ -15,36 +15,33 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav   me-auto  ">
                     <li class="nav-item">
-                        <a href="{{ url('/') }}" class="  nav-link {{ (request()->is('/')) ? 'active' : '' }}">Home</a>
+                        <a href="{{ url('/') }}" class="  nav-link {{ (request()->is('/')) ? 'active' : '' }}"> <i class="mx-2 fa fa-home"></i>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('productlist') }}" class="nav-link  {{ (request()->is('productlist')) ? 'active' : '' }}   ">Products</a>
+                        <a href="{{ url('productlist') }}" class="nav-link  {{ (request()->is('productlist')) ? 'active' : '' }}   "><i class="mx-2 	fas fa-sitemap"></i>Products</a>
                     </li>
+
                     @guest
+                    
                         
                     @else
                         <li class="nav-item">
-                            <a href="{{ url('wishlist') }}" class=" nav-link {{ (request()->is('wishlist')) ? 'active' : '' }} ">Wishlist</a>
+                            <a href="{{ url('wishlist') }}" class=" nav-link {{ (request()->is('wishlist')) ? 'active' : '' }} "><i class="mx-2 fa fa-heart"></i>Wishlist</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('cart') }}" class=" nav-link {{ (request()->is('cart')) ? 'active' : '' }} ">Cart</a>
+                            <a href="{{ url('cart') }}" class=" nav-link {{ (request()->is('cart')) ? 'active' : '' }} "><i class="mx-2 fa fa-shopping-cart"></i>Cart</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('checkout') }}" class=" nav-link {{ (request()->is('checkout')) ? 'active' : '' }}">Checkout</a>
+                            <a href="{{ url('checkout') }}" class=" nav-link {{ (request()->is('checkout')) ? 'active' : '' }}"><i class="mx-2 fa fa-check"></i>Checkout</a>
                         </li>
-          
+                       
+    
                     @endguest
                     <li class="nav-item">
-                        <div class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle " type="button" data-bs-toggle="dropdown"
-                                aria-expanded="true">More</a>
-                            <div class="dropdown-menu bg-custom">
-                                
-                                <a href="{{ url('contactus') }}" class="dropdown-item {{ (request()->is('contactus')) ? 'active' : '' }}">Contact Us</a>
-                            </div>
-                        </div>
+                        <a href="{{ url('contact') }}" class="nav-link  {{ (request()->is('contact')) ? 'active' : '' }}"><i class="mx-2 fa fa-phone-alt"></i>Contact Us</a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ url('about') }}" class="nav-link  {{ (request()->is('about')) ? 'active' : '' }}"><i class="mx-2 fa fa-info-circle"></i> About Us</a>
                     </li>
                 </ul>
                 <!-- Right Side Of Navbar -->
@@ -71,23 +68,25 @@
                             </a>
                             <div class="dropdown-menu bg-custom dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 @if (Auth::user()->role=='1')                     
-                                    <a class="nav-link {{ (request()->is('admin')) ? 'active' : '' }}" href="{{ url('admin') }}">{{ __('A Dashboard') }}</a>
-                                    <a class="nav-link {{ (request()->is('user')) ? 'active' : '' }}" href="{{ url('user') }}">{{ __('U Dashboard') }}</a>                         
+                                    <a class="nav-link {{ (request()->is('admin')) ? 'active' : '' }}" href="{{ url('admin') }}"><i class="mx-2 fas fa-tachometer-alt"> </i> Dashboard</a>                
                                 @endif
-                                @if (Auth::user()->role=='0')                     
-                                    <a class="nav-link {{ (request()->is('user')) ? 'active' : '' }}" href="{{ url('user') }}">{{ __('U Dashboard') }}</a>                     
-                                @endif
-                                <a class="dropdown-item nav-link" href="{{ route('logout') }}"
+                                
+                                <a class="nav-link {{ (request()->is('orders')) ? 'active' : '' }}" href="{{ url('orders') }}">  <i class="mx-2 fa fa-shopping-bag"> </i>My Orders</a>   
+                                <a class="nav-link {{ (request()->is('account')) ? 'active' : '' }}" href="{{ url('account') }}"> <i class="mx-2 fa  fa-user"> </i>My Account</a>                             
+                                <a class="dropdown-item nav-link" href="{{ url('logout') }}"
                                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                  <i class="mx-2 fa fa-power-off"></i>  Logout
                                 </a>
+                              
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
+                
                             </div>
                         </li>
                     @endguest
+                  
                 </ul>
             </div>
         </div>
