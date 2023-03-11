@@ -31,8 +31,4 @@ class Orderitem extends Model
         return $this->belongsTo(ProductColor::class, 'product_color_id', 'id');
     }
 
-    // public function orderItem()
-    // {
-    //     return $this->belongsTo(Order::class, 'order_id', 'id');
-    // }
 }

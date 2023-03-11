@@ -1,0 +1,78 @@
+@extends('admin.layout')
+
+@section('admin_content')
+<div class="card bg-custom">
+    <div class="card-header">
+        <form action="" method="get">
+            @csrf
+            <div class="row">
+                <div class="col-5 ">
+                    <label class=" m-2" for="">Filter By Date</label>
+                    <input type="date" name="date" value="{{ Request::get('date') ?? date('d-m-Y') }}" class=" m-2 form-control my-1">    
+                </div>
+                <div class="col-5 ">
+                    <label class=" m-2" for="">Filter By Status</label> 
+                    <select name="status" id="" class=" m-2 form-select my-1">
+                        <option value="">Select All Status</option>
+                        <option value="In Progress"{{ Request::get('status')=='In Progress'?'selected':''; }}>In Progress</option>
+                        <option value="Completed"{{ Request::get('status')=='Completed'?'selected':''; }}>Completed</option>
+                        <option value="Pending"{{ Request::get('status')=='Pending'?'selected':''; }}>Pending</option>
+                        <option value="Cancelled"{{ Request::get('status')=='Cancelled'?'selected':''; }}>Cancelled</option>
+                        <option value="Out For Delivery"{{ Request::get('status')=='Out For Delivery'?'selected':''; }}>Out For Delivery</option>
+                    </select>
+                </div>
+                <div class="col-2 ">
+                    <p class=" m-2">&nbsp;</p>
+                    <button  type="submit" class="m-2 btn btn-primary float-end">Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive ">
+            
+            <table class="table bg-custom align-middle table-bordered text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="7" > <p class="float-start h3">My Orders</p> </th>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>User Name</th>
+                        <th>Date</th>
+                        <th>Payment Mode</th>
+                        <th>Status</th>
+                        <th>Tracking ID</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($orders as $o)
+                        <tr>
+                            <td>{{ $o->id }}</td>
+                            <td>{{ $o->fullname }}</td>
+                            <td>{{ $o->created_at }}</td>
+                            <td>{{ $o->payment_mode}}</td>
+                            <td>{{ $o->status_message}}</td>
+                            <td>{{ $o->tracking_no}}</td>
+                            <td><a href="{{ route('aorder.show',$o->id) }}" class="btn btn-warning">View</a></td>
+                        </tr>
+                    @empty
+                    <td colspan="7">
+                        No Order Found Plz Select Date
+                    </td>
+                    @endforelse
+                    <tr>
+                        <td colspan="7">
+                            {{ $orders->links('pagination::bootstrap-5')  }}
+                        </td>
+                    </tr>  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+          
+
+@endsection

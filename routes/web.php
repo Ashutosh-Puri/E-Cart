@@ -8,8 +8,10 @@ use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\AOrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\UInvoiceController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductColorController;
@@ -46,6 +48,7 @@ Route::middleware(['auth','admin'])->group( function () {
         'brand' => BrandController::class,
         'product' => ProductController::class,
         'color' => ColorController::class,
+        'aorder'=> AOrderController::class,
         
     ]);
    
@@ -59,7 +62,8 @@ Route::middleware(['auth'])->group( function () {
         'orders'=> OrderController::class,
         'wishlist'=> WishlistController::class, 
         'cart'=> CartController::class,
-        'checkout'=> CheckoutController::class
+        'checkout'=> CheckoutController::class,
+        'uinvoice'=> UInvoiceController::class
     ]);
     
 });

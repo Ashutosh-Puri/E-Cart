@@ -9,10 +9,8 @@
         <a href="{{ url('brand') }}" class="text-start btn w-100 m-1 btn-custom  {{ (request()->is('brand')) ? 'active' : '' }}"><i class="fa fa-store mx-3"></i>Brands</a> 
         <a href="{{ url('product') }}" class="text-start btn w-100 m-1 btn-custom {{ (request()->is('product')) ? 'active' : '' }}"><i class="fa fa-flag mx-3"></i>Products</a>
          <a href="{{ url('color') }}" class="text-start btn w-100 m-1 btn-custom {{ (request()->is('color')) ? 'active' : '' }}"><i class="fa fa-circle mx-3"></i>Colors</a> 
-        {{-- {{-- <a href="" class="text-start btn w-100 m-1  btn-custom"><i class="fa fa-circle mx-3"></i>States</a>
-        <a href="" class="text-start btn w-100 m-1 btn-custom "><i class="fas fa-square mx-3"></i>Cities</a>
-        <a href="" class="text-start btn w-100 m-1  btn-custom"><i class="fas fa-play mx-3"></i>Villages</a>
-        <a href="" class="text-start btn w-100 m-1  btn-custom"><i class="far fa-credit-card mx-3"></i>Footer</a> --}}
+         <a href="{{ url('aorder') }}" class="text-start btn w-100 m-1 btn-custom {{ (request()->is('aorder')) ? 'active' : '' }}"><i class="fa fa-circle mx-3"></i>Orders</a> 
+        
     </div>
 </div>
 
