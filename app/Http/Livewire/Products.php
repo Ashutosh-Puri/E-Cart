@@ -15,10 +15,15 @@ class Products extends Component
     public $brandInputs=[];
     public $categoryInputs=[];
     public $priceInputs=[];
-    
-
-    protected $queryString =['brandInputs','categoryInputs','priceInputs'];
+    public $search="";
+    protected $queryString =['brandInputs','categoryInputs','priceInputs','search'];
    
+     public function search($sear)
+     {
+        $this->search =$sear;
+
+        return redirect()->to('productlist');
+     }
    
     public function addToWishlist($prodId)
     {
@@ -66,6 +71,8 @@ class Products extends Component
             })->when($this->priceInputs=='l-to-h',function($p3){
                 $p3->orderBy('selling_price','ASC');
             });
+        })->when($this->search,function($s){
+            $s->where('name','LIKE','%'.$this->search.'%');
         })
         ->where('status','0')->paginate(8);
         return view('livewire.products',['categories'=>$categories,'brands'=>$brands ,'products'=>$products]);

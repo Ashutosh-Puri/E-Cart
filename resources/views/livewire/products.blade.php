@@ -13,7 +13,9 @@
         <div class="py-1">
             <div class="container-fluid fw-bold">
                 <a class="text-decoration-none text-success" href="{{ url('/') }}">Home</a> /
-                Products
+                Products 
+
+                <input  type="text" wire:model="search" class=" w-75 float-end form-control" placeholder="Search"  >
             </div>
         </div>
     </div>
