@@ -33,8 +33,28 @@
                             <div class="card bg-custom" >
                                 <div class="card-body " >
                                     @if (isset($p->productImages[0]))
-                                        <img src="{{ url($p->productImages[0]->image) }}" style="width: 327px;height: 327px;" />
-                                    @endif
+                                        <div id="img-holder" class="mx-auto " style=" width: 327px;height: 327px; background-image:url({{  url($p->productImages[0]->image) }})" ></div>
+                                    @else
+                                    <div id="img-holder" class="mx-auto " style=" border:2px solid yellow; width: 327px;height: 327px; background-color:rgba(0,0,0,0)" ></div>
+                                    @endif       
+                                </div>
+                                <div class="card-footer">
+                                    @php
+                                        $i=1;
+                                    @endphp
+                                    
+                                    @forelse ($p->productImages as $img)
+                                        <img  style="width: 60px;height: 60px;" onclick="document.getElementById('img-holder').style.backgroundImage = 'url({{ url($img->image)}})'" src="{{ url($img->image)}}" >
+
+                                        @if ($i++==5)
+                                            @break  
+                                        @endif
+                                        
+                                    @empty
+                                    <img alt="No Image Added" style="width: 60px;height: 60px;"/>
+                                        
+                                    @endforelse
+                                   
                                 </div>
                             </div>  
                         </div>
@@ -110,15 +130,17 @@
                                         <td class="text-white">{{ $p->categories->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan=3>
+                                        <td >
                                             <button type="button" wire:click="addToCart({{ $p->id }})"
                                                 class="btn  btn-custom"><i class="mx-2 fa fa-cart-plus"></i>Add
                                                 to Cart</button>
+                                            
+                                           
+                                        </td>
+                                        <td>
                                             <button type="button" wire:click="addToWishlist({{ $p->id }})"
                                                 class="btn  btn-custom"><i class="mx-2 fa fa fa-heart"></i>Add
                                                 to Wishlist</button>
-                                            <a class="btn  btn-custom" href="#"><i
-                                                    class="mx-2 fa fa-shopping-bag"></i>Buy Now</a>
                                         </td>
                                     </tr>
                                 </table>
@@ -139,4 +161,6 @@
 
     </div>
 </div>
+
 </div>
+
