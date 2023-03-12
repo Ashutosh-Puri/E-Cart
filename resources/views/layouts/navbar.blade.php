@@ -38,7 +38,7 @@
     
                     @endguest
                     <li class="nav-item">
-                        <a href="{{ url('contact') }}" class="nav-link  {{ (request()->is('contact')) ? 'active' : '' }}"><i class="mx-2 fa fa-phone-alt"></i>Contact Us</a>
+                        <a href="{{ url('contactus') }}" class="nav-link  {{ (request()->is('contactus')) ? 'active' : '' }}"><i class="mx-2 fa fa-phone-alt"></i>Contact Us</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ url('about') }}" class="nav-link  {{ (request()->is('about')) ? 'active' : '' }}"><i class="mx-2 fa fa-info-circle"></i> About Us</a>

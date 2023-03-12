@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('orignal_price');
             $table->integer('selling_price');
             $table->integer('quantity');
-            $table->tinyInteger('trending')->defulat(0);
+            $table->tinyInteger('trending')->defulat(1);
             $table->tinyInteger('status')->default(0);
             $table->string('meta_title')->nullable();
             $table->mediumText('meta_keyword')->nullable();

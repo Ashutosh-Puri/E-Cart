@@ -1,3 +1,5 @@
+<div>
+
 @if (session()->has('s-status'))
     <div class="alert my-2 mx-2 alert-success d-flex align-items-center">
         {{ session('s-status') }}
@@ -27,23 +29,14 @@
                 @foreach ($product as $p)
                     <div class="row align-items-center bg-custom p-2 text-white  ">
 
-                        <div class="col-md-5 text-center">
-                            <div class=" p-auto">
-                                @if (isset($p->productImages[0]))
-                                    <img src="{{ url($p->productImages[0]->image) }}"
-                                        alt="{{ $p->productImages[0]->id }}" style=" height: 327px; width:327px;">
-                                @else
-                                    <img alt="Product Image Not Added"style="height: 327px; width:327px;">
-                                @endif
-                            </div>
-                            {{-- <div class="product-slider-single-nav normal-slider">
-                                    <div class="slider-nav-img"><img src="img/product-1.jpg" alt="Product Image"></div>
-                                    <div class="slider-nav-img"><img src="img/product-3.jpg" alt="Product Image"></div>
-                                    <div class="slider-nav-img"><img src="img/product-5.jpg" alt="Product Image"></div>
-                                    <div class="slider-nav-img"><img src="img/product-7.jpg" alt="Product Image"></div>
-                                    <div class="slider-nav-img"><img src="img/product-9.jpg" alt="Product Image"></div>
-                                    <div class="slider-nav-img"><img src="img/product-10.jpg" alt="Product Image"></div>
-                                </div> --}}
+                        <div class="col-md-5 col-12 text-center" >
+                            <div class="card bg-custom" >
+                                <div class="card-body " >
+                                    @if (isset($p->productImages[0]))
+                                        <img src="{{ url($p->productImages[0]->image) }}" style="width: 327px;height: 327px;" />
+                                    @endif
+                                </div>
+                            </div>  
                         </div>
                         <div class="col-md-7 ">
                             <div class="table-responsive">
@@ -145,4 +138,5 @@
         </div>
 
     </div>
+</div>
 </div>

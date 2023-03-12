@@ -20,15 +20,11 @@ class AOrderController extends Controller
 
           return  $q->whereDate('created_at',$request->date);
 
-        },function($q) use ($todaydate){
-
-          $q->whereDate('created_at',$todaydate);
-
         })->when($request->status!=NULL,function($q) use ($request){
 
             return  $q->where('status_message',$request->status);
 
-        })->paginate(10);
+        })->paginate(5);
         return view('admin.order.view_orders',compact('orders'));
     }
     /**

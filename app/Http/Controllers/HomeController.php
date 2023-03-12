@@ -9,25 +9,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('guest');
-    // }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    
     public function index()
     {   
-        $categories = Category::where('status','0')->paginate(10);
-        return view('home',compact('categories'));
+        $recentpoducts=Product::where('status','0')->orderBy('updated_at','DESC')->limit(4)->get();
+        $trendingpoducts=Product::where('trending','0')->orderBy('updated_at','DESC')->limit(4)->get();
+       
+        return view('home',compact('recentpoducts','trendingpoducts'));
     }
 
     public function products()
@@ -46,5 +34,12 @@ class HomeController extends Controller
     {   
         return view('thankyou');
 
-    }
+    }  
+    public function contact()
+    {   
+        return view('contactus');
+
+    }  
+
+   
 }

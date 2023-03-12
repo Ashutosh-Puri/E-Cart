@@ -39,7 +39,7 @@
                     <tr>
                         <th>ID</th>
                         <th>User Name</th>
-                        <th>Date</th>
+                        <th>Date & Time</th>
                         <th>Payment Mode</th>
                         <th>Status</th>
                         <th>Tracking ID</th>
@@ -51,7 +51,7 @@
                         <tr>
                             <td>{{ $o->id }}</td>
                             <td>{{ $o->fullname }}</td>
-                            <td>{{ $o->created_at }}</td>
+                            <td>{{ $o->created_at->format('d / m / Y - h : m : s A') }}</td>
                             <td>{{ $o->payment_mode}}</td>
                             <td>{{ $o->status_message}}</td>
                             <td>{{ $o->tracking_no}}</td>

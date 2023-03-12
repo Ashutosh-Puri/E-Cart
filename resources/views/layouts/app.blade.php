@@ -3,39 +3,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    
-    
     <link rel="stylesheet" href="{{ url('css/style.css') }}">
-   
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="{{ url('css/bootstrap.min.css') }}"> --}}
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
 </head>
 <body class="body d-flex flex-column min-vh-100">
-
     @include('layouts.navbar')
-
-            <div class="p-0 m-0  ">
-
-                @yield('content')
-
-            </div>
-
+    <div class="p-0 m-0  ">
+        @yield('content')
+    </div>
     @include('layouts.footer')
-
-
     @livewireScripts
     <script src="{{ url('/livewire/livewire.js') }}"></script>
     <script src="{{ url('js/jquery.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     @yield('scripts')
 </body>
 </html>
