@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 class Checkout extends Component
 {   public $carts,$payment_mode,$payment_id=NULL;
     public $totalproductamount=0;
+    public $grandtotal=0;
     public $fullname,$mobile,$email,$address,$city,$country,$pincode,$state;
 
     public function rules()
@@ -66,23 +67,24 @@ class Checkout extends Component
         }
         return $order;
     }
-    // public function opayOrder()
-    // {   
-    //     $this->payment_mode="Paid Online";
-    //     $opayorder= $this->placeOrder();
-    //     if($opayorder)
-    //     {   
-    //         Cart::where('user_id',auth()->user()->id)->delete();
-    //         $this->emit('updatecartcount');
-    //         session()->flash('s-status','Order Placed Successfully.');
-    //         return redirect()->to('thankyou');
-    //     }
-    //     else
-    //     {
-    //         session()->flash('d-status','Failed To Place Order.');
-    //     }
+    public function opayOrder()
+    {   
+        $this->payment_mode="Paid Online";
+        $opayorder= $this->placeOrder();
+        if($opayorder)
+        {   
+            session()->flash('d-status','Failed To Place Order, Payment Getway Under Construction...! ,Please Try Chash On Delivery Option');
+            // Cart::where('user_id',auth()->user()->id)->delete();
+            // $this->emit('updatecartcount');
+            // session()->flash('s-status','Order Placed Successfully.');
+            // return redirect()->to('thankyou');
+        }
+        else
+        {
+            session()->flash('d-status','Failed To Place Order.');
+        }
        
-    // }
+    }
 
     public function codOrder()
     {   
@@ -109,6 +111,27 @@ class Checkout extends Component
         foreach($this->carts as $cartitem)
         {
              $this->totalproductamount += ($cartitem->product->selling_price * $cartitem->quantity);
+        }
+
+        if(  $this->totalproductamount >10000)
+        {
+           
+             $this->grandtotal += $this->totalproductamount;;
+        }
+        elseif(10000 > $this->totalproductamount &&  $this->totalproductamount >1000)
+        {
+           
+             $this->grandtotal +=20 + $this->totalproductamount;;
+        }
+        elseif(1000 >= $this->totalproductamount &&  $this->totalproductamount >500)
+        {
+           
+             $this->grandtotal +=50 + $this->totalproductamount;;
+        }
+        else
+        {
+             
+            $this->grandtotal+=150 + $this->totalproductamount;
         }
         return $this->totalproductamount;
     }

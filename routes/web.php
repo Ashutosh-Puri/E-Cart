@@ -27,7 +27,10 @@ Route::get('productlist', [HomeController::class, 'products']);
 Route::get('viewproduct/{product_id}', [HomeController::class, 'view_products']);
 Route::get('thankyou', [HomeController::class, 'thankyou']);
 Route::get('contactus', [HomeController::class, 'contact']);
-
+Route::get('aboutus', [HomeController::class, 'aboutus']);
+Route::post('subscribe', [HomeController::class, 'subscribe']);
+Route::get('unsubscribe', [HomeController::class, 'unsub']);
+Route::post('unsubscribe', [HomeController::class, 'unsubscribe']);
 Route::middleware(['auth','admin'])->group( function () {
 
     Route::get('product/{id}/delete', [ProductController::class,'delete']);

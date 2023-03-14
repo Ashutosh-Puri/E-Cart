@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Brand;
+use App\Models\Color;
 use App\Models\Order;
 use App\Models\Contact;
 use App\Models\Product;
@@ -26,7 +27,7 @@ class AdminController extends Controller
         $productcount=Product::count();
         $categorycount=Category::count();
         $brandcount=Brand::count();
-        $colorcount=Category::count();
+        $colorcount=Color::count();
         $ordercount=Order::count();
         $ordertoday=Order::whereDate('created_at',date('d-m-Y'))->count();
         $ordermonth=Order::whereMonth('created_at',date('m'))->count();

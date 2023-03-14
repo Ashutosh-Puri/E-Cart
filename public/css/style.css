@@ -58,7 +58,13 @@
 }
 
 #img-holder {
-    background-position: center;
-    background-size: cover;
+     background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    
+
+    
+    width: 327px;
+    height: 327px; 
 }  
    

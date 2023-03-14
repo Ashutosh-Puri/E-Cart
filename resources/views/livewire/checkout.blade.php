@@ -2,12 +2,12 @@
     <div class="container-fluid">
         <div class="row">
             @if (session()->has('s-status'))
-                <div class="alert my-2 mx-2 alert-success d-flex align-items-center">
+                <div class="alert my-2  alert-success align-items-center fw-bold">
                     {{ session('s-status') }}
                 </div>
             @endif
             @if (session()->has('d-status'))
-                <div class="alert my-2 mx-2  alert-danger d-flex align-items-center">
+                <div class="alert my-2  alert-danger  align-items-center fw-bold">
                     {{ session('d-status') }}
                 </div>
             @endif
@@ -27,56 +27,56 @@
                                 <div class="col-md-6 my-1">
                                     <label>Full Name</label>
                                     <input class="form-control" wire:model.defer="fullname" type="text"
-                                        placeholder="First Name">
+                                        placeholder="First Name" autocomplete="fullname">
                                     @error('fullname')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 my-1">
                                     <label>E-mail</label>
-                                    <input class="form-control" wire:model.defer="email" type="text" placeholder="E-mail">
+                                    <input class="form-control" wire:model.defer="email" type="text" placeholder="E-mail" autocomplete="email">
                                     @error('email')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 my-1">
                                     <label>Mobile No</label>
-                                    <input class="form-control" wire:model.defer="mobile" type="text" placeholder="Mobile No">
+                                    <input class="form-control" wire:model.defer="mobile" type="text" placeholder="Mobile No" autocomplete="mobile">
                                     @error('mobile')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 my-1">
                                     <label>Address</label>
-                                    <input class="form-control" wire:model.defer="address" type="text" placeholder="Address">
+                                    <input class="form-control" wire:model.defer="address" type="text" placeholder="Address" autocomplete="address">
                                     @error('address')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 my-1">
                                     <label>Country</label>
-                                    <input class="form-control" wire:model.defer="country" type="text" placeholder="Country">
+                                    <input class="form-control" wire:model.defer="country" type="text" placeholder="Country" autocomplete="country">
                                     @error('country')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 my-1">
                                     <label>City</label>
-                                    <input class="form-control" wire:model.defer="city" type="text" placeholder="City">
+                                    <input class="form-control" wire:model.defer="city" type="text" placeholder="City" autocomplete="city">
                                     @error('city')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 my-1">
                                     <label>State</label>
-                                    <input class="form-control" wire:model.defer="state" type="text" placeholder="State">
+                                    <input class="form-control" wire:model.defer="state" type="text" placeholder="State" autocomplete="state">
                                     @error('state')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 my-1">
                                     <label>PIN Code</label>
-                                    <input class="form-control" wire:model.defer="pincode" type="text" placeholder="PIN Code">
+                                    <input class="form-control" wire:model.defer="pincode" type="text" placeholder="PIN Code" autocomplete="pincode">
                                     @error('pincode')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-8">
-                                        <p>Product Name</p>
+                                        <p>Cart Total</p>
                                     </div>
                                     <div class="col-4 float-end">
                                         <span class="float-end">&#8377; {{ $totalproductamount }}</span>
@@ -109,7 +109,17 @@
                                         <p>Shipping Cost</p>
                                     </div>
                                     <div class="col-4 float-end">
-                                        <span class="float-end">&#8377; 1</span>
+                                        <span class="float-end">&#8377; 
+                                            @if ($this->totalproductamount >10000)
+                                                {{ 0 }}
+                                            @elseif (10000 > $this->totalproductamount &&  $this->totalproductamount >1000)
+                                                {{ 20 }}
+                                            @elseif (1000 >= $this->totalproductamount &&  $this->totalproductamount >500)
+                                                {{ 50 }}
+                                            @else
+                                                {{ 150 }}
+                                            @endif
+                                    </span>
                                     </div>
                                     <hr>
                                 </div>
@@ -118,7 +128,7 @@
                                         <h2>Grand Total</h2>
                                     </div>
                                     <div class="col-4 float-end">
-                                        <h2><span class="float-end">&#8377; 100</span></h2>
+                                        <h2><span class="float-end">&#8377; {{ $grandtotal }}</span></h2>
                                     </div>
                                     <hr>
                                 </div>
@@ -153,11 +163,11 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <div id="opay" class="tab-pane fade">
+                                        <div id="opay" class="tab-pane fade py-2">
                                             <h3>Online Payment</h3>
                                             <p></p>
                                             <div class="text-center">
-                                                <button  wire:loading.attr="disabled" wire:click="opayOrder" class="btn btn-warning fw-bold">
+                                                <button  wire:loading.attr="disabled" wire:click="opayOrder" class="btn btn-custom fw-bold">
                                                     <span wire:loading.remove wire:target="opayOrder">Pay Now ( Online Payment )</span>
                                                     <span wire:loading wire:target="opayOrder">Loading..</span>
                                                 </button>

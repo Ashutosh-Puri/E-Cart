@@ -179,8 +179,32 @@
                No Product Found 
             @endforelse
             <tr>
-                <td colspan="4" class="total-heading">Total Amount :</td>
-                <td colspan="1" class="total-heading">Rs. {{ $total }}</td>
+                <td colspan="4" >Shipping Cost</td>
+                <td colspan="1">
+                    @if ($total  >10000)
+                         {{ 0 }}
+                    @elseif (10000 > $total  &&  $total >1000)
+                        {{ 20 }}
+                    @elseif (1000 >= $total  &&  $total  >500)
+                        {{ 50 }}
+                    @else
+                        {{ 150 }}
+                    @endif
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="total-heading">Grand Total:</td>
+                <td colspan="1" class="total-heading">Rs.
+                    @if ($total  >10000)
+                         {{ $total }}
+                    @elseif (10000 > $total  &&  $total >1000)
+                        {{ $total+20 }}
+                    @elseif (1000 >= $total  &&  $total  >500)
+                        {{  $total+50 }}
+                    @else
+                        {{  $total+150 }}
+                    @endif
+                </td>
             </tr>
         </tbody>
     </table>

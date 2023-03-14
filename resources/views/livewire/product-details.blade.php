@@ -1,12 +1,12 @@
 <div>
 
 @if (session()->has('s-status'))
-    <div class="alert my-2 mx-2 alert-success d-flex align-items-center">
+    <div class="alert my-2 mx-2 alert-success  align-items-center">
         {{ session('s-status') }}
     </div>
 @endif
 @if (session()->has('d-status'))
-    <div class="alert my-2 mx-2  alert-danger d-flex align-items-center">
+    <div class="alert my-2 mx-2  alert-danger  align-items-center">
         {{ session('d-status') }}
     </div>
 @endif
@@ -33,7 +33,7 @@
                             <div class="card bg-custom" >
                                 <div class="card-body " >
                                     @if (isset($p->productImages[0]))
-                                        <div id="img-holder" class="mx-auto " style=" width: 327px;height: 327px; background-image:url({{  url($p->productImages[0]->image) }})" ></div>
+                                        <div id="img-holder" class="mx-auto " style="background-image:url({{  url($p->productImages[0]->image) }})" ></div>
                                     @else
                                     <div id="img-holder" class="mx-auto " style=" border:2px solid yellow; width: 327px;height: 327px; background-color:rgba(0,0,0,0)" ></div>
                                     @endif       

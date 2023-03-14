@@ -1,12 +1,15 @@
+<div>
 @if (session()->has('s-status'))
-    <div class="alert my-2 mx-2 alert-success d-flex align-items-center">
+    <div class="alert my-2 mx-2 alert-success  align-items-center">
         {{ session('s-status') }}
+    </div>
 @endif
 @if (session()->has('d-status'))
-    <div class="alert my-2 mx-2  alert-danger d-flex align-items-center">
+    <div class="alert my-2 mx-2  alert-danger  align-items-center">
         {{ session('d-status') }}
     </div>
 @endif
+
 
 <div class="card bg-custom m-1">
     <div class="card-header">
@@ -24,7 +27,7 @@
             <!-- Side Bar Start -->
 
             <div class="col-md-2 ">
-                <div class="card bg-custom ">
+                <div class="card bg-custom min-vh-100 ">
                     <div class="card-header">
                         <h3>Filters</h3>
                     </div>
@@ -144,10 +147,12 @@
                             No Products Available
                         </div>
                     @endforelse
-                    <div class=" bg-custom my-2">{{ $products->links('pagination::bootstrap-5') }} </div>
+                     <div class=" card pt-3 bg-custom my-2">{{ $products->links('pagination::bootstrap-5') }} </div>
                 </div>
 
             </div>
         </div>
     </div>
 </div>
+</div>
+
