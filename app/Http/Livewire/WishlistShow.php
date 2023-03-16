@@ -13,6 +13,7 @@ class WishlistShow extends Component
         $this->emit('updatewishlistcount');
         session()->flash('s-status','Wishlist Item Removed Successfully.');
     }
+    
     public function render()
     { 
         $wishlist =Wishlist::where('user_id',auth()->user()->id)->get();

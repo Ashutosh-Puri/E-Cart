@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class WishlistCount extends Component
 {   
     public $wishlistCount;
-    // updatewishlistcount
 
     protected $listeners=['updatewishlistcount'=>'checkwishlistcount'];
+    
     public function checkwishlistcount()
     {
         if(Auth::check())
@@ -22,6 +22,7 @@ class WishlistCount extends Component
             return $this->wishlistCount=0;
         }
     }
+
     public function render()
     {       
         $this->wishlistCount = $this->checkwishlistcount();

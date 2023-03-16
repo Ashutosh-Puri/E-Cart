@@ -32,19 +32,23 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $m=1;
+                            @endphp
                             @forelse ($colors as $i)
                                 <tr>
-                                    <td scope="row">{{ $i->id }}</td>
+                                    <td scope="row">{{ $m++ }}</td>
                                     <td> {{ $i->name }}</td>
                                     <td> {{ $i->code}}</td>
                                     <td>{{ $i->status== 0 ?'Active':'In Active'; }}</td>
                                     <td>
                                         <a class="btn btn-success btn-sm fw-bold" href="{{ route('color.show',$i->id) }}">View</a>
                                         <a class="btn btn-primary btn-sm fw-bold" href="{{ route('color.edit',$i->id) }}">Edit</a>
-                                        <a class="btn btn-danger btn-sm fw-bold"  onclick="event.preventDefault(); if( confirm('Are You Sure. You Want To Delete This Record')){document.getElementById('delete-color').submit()};">Delete</a>
-                                        <form id="delete-color" action="{{ route('color.destroy',$i->id) }}" method="post">
+                                       
+                                        <form class="d-inline" id="delete-color" action="{{ route('color.destroy',$i->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
+                                            <button class="btn btn-danger btn-sm fw-bold" onclick="return confirm('Are You Sure. You Want To Delete This Record')"  type="submit"> Delete</button>
                                         </form>  
                                     </td>
                                 </tr>

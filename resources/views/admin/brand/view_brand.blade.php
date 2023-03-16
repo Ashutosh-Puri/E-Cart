@@ -33,25 +33,33 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $m=1;
+                            @endphp
                             @forelse ($brands as $i)
                                 <tr>
-                                    <td scope="row">{{ $i->id }}</td>
-                                    <td> {{ $i->category->name }}</td>
+                                    <td scope="row">{{ $m++ }}</td>
+                                    <td> 
+                                        @if (isset($i->category->name))
+                                            {{ $i->category->name }}
+                                         @endif 
+                                    </td>
                                     <td> {{ $i->name }}</td>
                                     <td> {{ $i->slug}}</td>
                                     <td>{{ $i->status== 0 ?'Active':'In Active'; }}</td>
                                     <td>
                                         <a class="btn btn-success btn-sm fw-bold" href="{{ route('brand.show',$i->id) }}">View</a>
                                         <a class="btn btn-primary btn-sm fw-bold" href="{{ route('brand.edit',$i->id) }}">Edit</a>
-                                        <a class="btn btn-danger btn-sm fw-bold"  onclick="event.preventDefault(); if( confirm('Are You Sure. You Want To Delete This Record')){document.getElementById('delete-brand').submit()};">Delete</a>
-                                        <form id="delete-brand" action="{{ route('brand.destroy',$i->id) }}" method="post">
+
+                                        <form id="delete-brand" class="d-inline" action="{{ route('brand.destroy',$i->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
+                                            <button class="btn btn-danger btn-sm fw-bold" onclick="return confirm('Are You Sure. You Want To Delete This Record')"  type="submit"> Delete</button>
                                         </form>  
                                     </td>
                                 </tr>
                             @empty
-                             <td colspan="5">No Record Found..!</td>
+                             <td colspan="6">No Record Found..!</td>
                             @endforelse
                             {{ $brands->links('pagination::bootstrap-5'); }}
 

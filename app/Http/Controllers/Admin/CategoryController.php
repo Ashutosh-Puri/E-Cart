@@ -12,26 +12,17 @@ use App\Http\Requests\CategoryFormRequest;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {   
-        $categories = Category::paginate(10);
+        $categories = Category::orderBy('updated_at','desc')->paginate(10);
         return view('admin.category.view_category',compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.category.create_category');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Category $category ,CategoryFormRequest $request)
     {  
         
@@ -48,25 +39,16 @@ class CategoryController extends Controller
         return redirect()->route('category.index')->with('s-status','Category Created Successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Category $category)
     {
         return view('admin.category.show_category',compact('category'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Category $category)
     {
         return view('admin.category.edit_category',compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(CategoryFormRequest $request, Category $category)
     {   
 
@@ -81,14 +63,9 @@ class CategoryController extends Controller
             $category->update();
             
             return redirect()->route('category.index')->with('s-status','Category Updated Successfully.');
-        
          
-        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Category $category)
     {
         $category->delete();

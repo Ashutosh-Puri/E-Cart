@@ -32,21 +32,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $m=1;
+                            @endphp
                             @forelse ($categories as $i)
+                           
                                 <tr>
-                                    <td scope="row">{{ $i->id }}</td>
+                                    <td scope="row">{{ $m++ }}</td>
                                     <td> {{ $i->name }}</td>
                                     <td> {{ $i->slug}}</td>
                                     <td>{{ $i->status==0?'Active':'In Active'; }}</td>
                                     <td>
                                         <a class="btn btn-success btn-sm fw-bold" href="{{ route('category.show',$i->id) }}">View</a>
                                         <a class="btn btn-primary btn-sm fw-bold" href="{{ route('category.edit',$i->id) }}">Edit</a>
-
-                                        <a class="btn btn-danger btn-sm fw-bold"  onclick="event.preventDefault(); if( confirm('Are You Sure. You Want To Delete This Record')){document.getElementById('delete-category').submit()};">Delete</a>
-                                        <form id="delete-category" action="{{ route('category.destroy',$i->id) }}" method="post">
+                                        <form class="d-inline" id="delete-category" action="{{ route('category.destroy',$i->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                        </form>  
+                                            <button class="btn btn-danger btn-sm fw-bold" onclick="return confirm('Are You Sure. You Want To Delete This Record')"  type="submit"> Delete</button>
+                                        </form>   
                                     </td>
                                 </tr>
                             @empty

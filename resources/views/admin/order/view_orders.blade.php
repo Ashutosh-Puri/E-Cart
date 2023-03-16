@@ -28,14 +28,14 @@
             </div>
         </form>
     </div>
+    <div class="card-header">
+        <p class="float-start h3">My Orders</p>
+    </div>
     <div class="card-body">
         <div class="table-responsive ">
             
             <table class="table bg-custom align-middle table-bordered text-center">
                 <thead class="thead-dark">
-                    <tr>
-                        <th colspan="7" > <p class="float-start h3">My Orders</p> </th>
-                    </tr>
                     <tr>
                         <th>ID</th>
                         <th>User Name</th>
@@ -47,9 +47,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $m=1;
+                    @endphp
                     @forelse ($orders as $o)
                         <tr>
-                            <td>{{ $o->id }}</td>
+                            <td>{{ $m++}}</td>
                             <td>{{ $o->fullname }}</td>
                             <td>{{ $o->created_at->format('d / m / Y - h : m : s A') }}</td>
                             <td>{{ $o->payment_mode}}</td>
@@ -62,11 +65,8 @@
                         No Order Found Plz Select Date
                     </td>
                     @endforelse
-                    <tr>
-                        <td colspan="7">
-                            {{ $orders->links('pagination::bootstrap-5')  }}
-                        </td>
-                    </tr>  
+                     {{ $orders->links('pagination::bootstrap-5')  }}
+                      
                 </tbody>
             </table>
         </div>

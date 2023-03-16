@@ -28,6 +28,7 @@ class Checkout extends Component
             'pincode'=>['required','integer','digits:6'],
         ];
     }
+
     public function placeOrder()
     {  
         $this->validate();
@@ -67,6 +68,7 @@ class Checkout extends Component
         }
         return $order;
     }
+    
     public function opayOrder()
     {   
         $this->payment_mode="Paid Online";
@@ -135,6 +137,7 @@ class Checkout extends Component
         }
         return $this->totalproductamount;
     }
+
     public function render()
     {   
         $this->fullname= auth()->user()->name;

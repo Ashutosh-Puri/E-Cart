@@ -18,18 +18,13 @@ use App\Http\Requests\ProductFormRequest;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $products= Product::orderBy('updated_at','desc')->paginate(10);
         return view('admin.product.view_product',compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {   
         $brands= Brand::where('status','0')->get();
@@ -38,9 +33,6 @@ class ProductController extends Controller
         return view('admin.product.create_product',compact('brands','categories','colors'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Product $product ,ProductFormRequest $request)
     {   
         
@@ -104,17 +96,11 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('s-status','Product Created Successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Product $product)
     {
         return view('admin.product.show_product',compact('product'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Product $product)
     {   
         $brands= Brand::where('status','0')->get();
@@ -124,9 +110,6 @@ class ProductController extends Controller
         return view('admin.product.edit_product',compact('product','brands','categories','colors'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Product $product ,ProductFormRequest $request)
     {   
         $product->category_id = $request['category_id'];
@@ -189,9 +172,6 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('s-status','Product Updated Successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Product $product)
     {   
        foreach($product->productImages as $temp)
@@ -206,6 +186,7 @@ class ProductController extends Controller
 
         return redirect()->route('product.index')->with('s-status','Product Deleted Successfully.');
     }
+    
     public function delete($id)
     {   
         

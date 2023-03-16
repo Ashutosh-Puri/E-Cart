@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use App\Models\Cart;
 use Livewire\Component;
 
-
 class CartShow extends Component
 {   
     public $grandtotal=0;
@@ -45,6 +44,7 @@ class CartShow extends Component
             session()->flash('d-status','Something Went Wrong.');
         }
     }
+
     public function decrementQuantity($cartId)
     {
         $cartdata= Cart::where('id',$cartId)->where('user_id',auth()->user()->id)->first();
@@ -73,12 +73,14 @@ class CartShow extends Component
             session()->flash('d-status','Something Went Wrong.');
         }
     }
+
     public function removecartitem($cartId)
     {
         Cart::where('id',$cartId)->where('user_id',auth()->user()->id)->delete();
         $this->emit('updatecartcount');
         session()->flash('s-status','Cart Item Removed Successfully.');
     }
+    
     public function render()
     { 
         $cart =Cart::where('user_id',auth()->user()->id)->get();

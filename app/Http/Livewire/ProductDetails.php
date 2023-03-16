@@ -132,6 +132,7 @@ class ProductDetails extends Component
             return false;
         }
     }
+
     public function colorselected($productColorId )
     {   $this->prodcolorid=$productColorId ;
        $prodcolor =  ProductColor::where('id',$productColorId)->first();
@@ -146,6 +147,7 @@ class ProductDetails extends Component
         }
         
     }
+    
     public function mount($prod)
     {
        $this->prod=$prod;

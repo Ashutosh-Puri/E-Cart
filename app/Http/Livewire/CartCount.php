@@ -10,6 +10,7 @@ class CartCount extends Component
 {
     public $cartCount;
     protected $listeners=['updatecartcount'=>'checkcartcount'];
+    
     public function checkcartcount()
     {
         if(Auth::check())
@@ -20,6 +21,7 @@ class CartCount extends Component
             return $this->cartCount=0;
         }
     }
+
     public function render()
     {       
         $this->cartCount = $this->checkcartcount();

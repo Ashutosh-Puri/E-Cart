@@ -16,22 +16,24 @@ use App\Http\Controllers\User\UInvoiceController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
 
+//guest
+Route::controller(HomeController::class)->group( function () {
+    Route::get('/', 'index')->name('home');
+    Route::get('productlist', 'products');
+    Route::get('viewproduct/{product_id}',  'view_products');
+    Route::get('thankyou', 'thankyou');
+    Route::get('contactus', 'contact');
+    Route::get('aboutus', 'aboutus');
+    Route::post('subscribe', 'subscribe');
+    Route::get('unsubscribe', 'unsub');
+    Route::post('unsubscribe', 'unsubscribe');
+    
+});
 
+Auth::routes(['verify'=>true]);
 
-
-
-Auth::routes();
-
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('productlist', [HomeController::class, 'products']);
-Route::get('viewproduct/{product_id}', [HomeController::class, 'view_products']);
-Route::get('thankyou', [HomeController::class, 'thankyou']);
-Route::get('contactus', [HomeController::class, 'contact']);
-Route::get('aboutus', [HomeController::class, 'aboutus']);
-Route::post('subscribe', [HomeController::class, 'subscribe']);
-Route::get('unsubscribe', [HomeController::class, 'unsub']);
-Route::post('unsubscribe', [HomeController::class, 'unsubscribe']);
-Route::middleware(['auth','admin'])->group( function () {
+// admin routes
+Route::middleware(['auth','admin','verified'])->group( function () {
 
     Route::get('product/{id}/delete', [ProductController::class,'delete']);
     Route::resources([
@@ -42,13 +44,11 @@ Route::middleware(['auth','admin'])->group( function () {
         'color' => ColorController::class,
         'aorder'=> AOrderController::class,
         
-    ]);
-   
-    
+    ]);  
 });
     
-
-Route::middleware(['auth'])->group( function () {
+// user routes
+Route::middleware(['auth','verified'])->group( function () {
 
     Route::resources([
         'orders'=> OrderController::class,
@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group( function () {
         'checkout'=> CheckoutController::class,
         'uinvoice'=> UInvoiceController::class,
         'contact'=> ContactController::class,
+
     ]);
     
 });

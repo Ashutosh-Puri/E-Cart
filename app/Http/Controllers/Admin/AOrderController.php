@@ -11,9 +11,6 @@ use Illuminate\Http\RedirectResponse;
 
 class AOrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {   $todaydate=Carbon::now()->format('d-m-Y');
         $orders= Order::when($request->date!=NULL,function($q) use ($request){
@@ -24,44 +21,16 @@ class AOrderController extends Controller
 
             return  $q->where('status_message',$request->status);
 
-        })->paginate(5);
+        })->orderBy('updated_at','desc')->paginate(5);
         return view('admin.order.view_orders',compact('orders'));
     }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): Response
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
+  
     public function show(Order $aorder)
     {
         return view('admin.order.show_orders',compact('aorder'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit()
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Order $aorder ,Request $request)
     {
         $aorder->status_message=$request->status;
@@ -69,12 +38,4 @@ class AOrderController extends Controller
         return redirect()->back()->with('s-status','Order Status Updated Successfully.');
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id): RedirectResponse
-    {
-        //
-    }
 }

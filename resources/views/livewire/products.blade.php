@@ -60,7 +60,7 @@
                                         </li>
                                     @empty
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#"><i class=" px-2 fa fa-home "></i> No
+                                            <a class="nav-link" href="#"><i class=" px-2 fa fa-circle"></i> No
                                                 categories Found</a>
                                         </li>
                                     @endforelse
@@ -79,7 +79,7 @@
                                         </li>
                                     @empty
                                         <li class="nav-item">
-                                            <a> No Brnads Found Of This Category</a>
+                                            <a> No Brnads Found</a>
                                         </li>
                                     @endforelse
                                 </ul>
@@ -143,11 +143,11 @@
                             </div>
                         </div>
                     @empty
-                        <div class="text-center h3">
-                            No Products Available
+                        <div class="text-center text-danger h3">
+                            No Products Available 
                         </div>
                     @endforelse
-                     <div class=" card pt-3 bg-custom my-2">{{ $products->links('pagination::bootstrap-5') }} </div>
+                        <div class=" card pt-3 bg-custom my-2">{{ $products->links('pagination::bootstrap-5') }} </div> 
                 </div>
 
             </div>

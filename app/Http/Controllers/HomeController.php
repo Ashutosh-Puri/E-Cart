@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    
+ 
     public function index()
     {   
         $recentpoducts=Product::where('status','0')->orderBy('updated_at','DESC')->limit(4)->get();
@@ -31,11 +31,13 @@ class HomeController extends Controller
         return view('productdetails',compact('product'));
 
     }
+    
     public function thankyou()
     {   
         return view('thankyou');
 
     }  
+
     public function contact()
     {   
         return view('contactus');
@@ -47,7 +49,8 @@ class HomeController extends Controller
         $subscriber->email=$data['email'];
         $subscriber->save();
         return  redirect()->back()->with('s-status','Welcome To Our Newsletter.');
-    }  
+    } 
+
     public function unsub()
     {
         return view('unsubscribe');

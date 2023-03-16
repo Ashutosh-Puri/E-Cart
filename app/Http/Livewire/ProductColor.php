@@ -25,6 +25,7 @@ class ProductColor extends Component
         session()->flash('s-status','Product Color Quantity Updated Successfully.');
         $this->emit('some-event');
     }
+    
     public function delete($cid ,$pid)
     {
        
@@ -33,6 +34,7 @@ class ProductColor extends Component
         session()->flash('s-status','Product Color Deleted Successfully.');
         $this->emit('some-event');
     }
+
     public function render()
     {
         return view('livewire.product-color',['product'=>$this->prod]);

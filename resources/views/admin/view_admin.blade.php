@@ -30,19 +30,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $m=1;
+                            @endphp
                             @forelse ($admins as $admin)
                                 <tr class="text-white">
-                                    <td  class="text-white"scope="row">{{ $admin->id }}</td>
+                                    <td  class="text-white"scope="row">{{ $m++ }}</td>
                                     <td class="text-white">{{ $admin->name }}</td>
                                     <td class="text-white">{{ $admin->email }}</td>
                                     <td class="text-white">{{ $admin->role == '1'?'Admin':'User'; }}</td>
                                     <td class="text-white">
                                         <a class="btn btn-primary btn-sm fw-bold" href="{{ route('admin.edit',$admin->id) }}">Edit</a>
-
-                                        <a class="btn btn-danger btn-sm fw-bold" onclick="$(this).parent().find('form').submit()">Delete</a>
-                                        <form action="{{ route('admin.destroy',$admin->id) }}" method="post">
+                                        <form class="d-inline" action="{{ route('admin.destroy',$admin->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
+                                            <button class="btn btn-danger btn-sm fw-bold" onclick="return confirm('Are You Sure. You Want To Delete This Record')"  type="submit"> Delete</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -72,19 +74,23 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $n=1;
+                            @endphp
                             @forelse ($users as $admin)
                                 <tr>
-                                    <td class="text-white" scope="row">{{ $admin->id }}</td>
+                                    <td class="text-white" scope="row">{{ $n++ }}</td>
                                     <td class="text-white">{{ $admin->name }}</td>
                                     <td class="text-white">{{ $admin->email }}</td>
                                     <td class="text-white">{{ $admin->role == '1'?'Admin':'User'; }}</td>
                                     <td class="text-white">
                                         <a class="btn btn-primary btn-sm fw-bold" href="{{ route('admin.edit',$admin->id) }}">Edit</a>
 
-                                        <a class="btn btn-danger btn-sm fw-bold" onclick="$(this).parent().find('form').submit()">Delete</a>
-                                        <form action="{{ route('admin.destroy',$admin->id) }}" method="post">
+                                        
+                                        <form class="d-inline" action="{{ route('admin.destroy',$admin->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
+                                            <button class="btn btn-danger btn-sm fw-bold" onclick="return confirm('Are You Sure. You Want To Delete This Record')"  type="submit"> Delete</button>
                                         </form>
                                     </td>
                                 </tr>

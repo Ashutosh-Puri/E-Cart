@@ -18,12 +18,12 @@ class Products extends Component
     public $search="";
     protected $queryString =['brandInputs','categoryInputs','priceInputs','search'];
    
-     public function search($sear)
-     {
+    public function search($sear)
+    {
         $this->search =$sear;
 
         return redirect()->to('productlist');
-     }
+    }
    
     public function addToWishlist($prodId)
     {
