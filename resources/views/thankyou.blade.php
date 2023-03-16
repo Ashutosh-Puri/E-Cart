@@ -17,6 +17,7 @@
                 <h3>Thank You For Shopping With E-Cart</h3>
             </div>
             <div class="card-body ">
+                <img  class="m-4"src="{{ url('favicon.ico') }}" alt="" style="height: 100px; width:150px;">
                 <h5> Get Best Deals & Offers </h5>
             </div>
             <div class="card-footer m-4">

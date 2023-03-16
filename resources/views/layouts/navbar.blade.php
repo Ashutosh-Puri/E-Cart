@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-md z-index-5 bg-custom   fw-bold  ">
         <div class="container-fluid ">
             <a class="navbar-brand fs-5 text-white fw-bold" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }} 
+              <img  class="mx-2"src="{{ url('favicon.ico') }}" alt="" style="height: 20px; width:30px;">  {{ config('app.name', 'Laravel') }} 
             </a>
             
             
