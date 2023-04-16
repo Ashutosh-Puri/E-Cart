@@ -13,6 +13,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
+    @yield('styles')
 </head>
 <body class="body d-flex flex-column min-vh-100">
     @include('layouts.navbar')

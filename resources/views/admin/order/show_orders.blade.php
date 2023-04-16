@@ -22,6 +22,7 @@
                             <a class="float-end btn btn-success fw-bold" href="{{ route('aorder.index') }}">Back</a>
                             <a class="float-end btn mx-1 btn-warning fw-bold" href="{{ route('uinvoice.edit',$aorder->id) }}" target="_blank">Download Invoice</a>
                             <a class="float-end btn mx-1 btn-info fw-bold" href="{{ route('uinvoice.show',$aorder->id) }}" target="_blank">View Invoice</a>
+                            <a class="float-end btn mx-1 btn-custom fw-bold" href="{{ url('uinvoice/'.$aorder->id.'/mail') }}" >Mail Invoice</a>
                         </th>
                     </tr>
                 </thead>
@@ -51,32 +52,42 @@
                     <tr>
                         <th class="text-info fw-bold">Address</th>
                         <td colspan="3">{{ $aorder->address }}</td>
-                        <th class="text-info fw-bold">Payment ID</th>
-                        <td colspan="3">{{ $aorder->payment_id == '' ? 'NULL' : $aorder->payment_id }}</td> 
+                        <th class="text-info fw-bold"> Order Status</th>
+                        <td colspan="3">
+                            @if ($aorder->status_message == 'Cancelled')
+                                <span class="text-danger fs-5  fw-bold">{{ $aorder->status_message }}</span>
+                            @elseif ($aorder->status_message == 'In Progress')
+                                <span class="text-white fs-5  fw-bold">{{ $aorder->status_message }}</span>
+                            @elseif ($aorder->status_message == 'Completed')
+                                <span class="text-success  fs-5 fw-bold">{{ $aorder->status_message }}</span>
+                            @elseif ($aorder->status_message == 'Pending')
+                                <span class="text-info  fs-5 fw-bold">{{ $aorder->status_message }}</span>
+                            @else
+                                <span class="text-primary  fs-5  fw-bold">{{ $aorder->status_message }}</span>
+                            @endif
+                        </td>
+                        
+                         
                     </tr>
                     <tr>
                         <th class="text-info fw-bold">Pincode</th>
                         <td colspan="3">{{ $aorder->pincode }}</td>
                         <th class="text-info fw-bold">Payment Mode</th>
                         <td colspan="3">{{ $aorder->payment_mode }}</td>
+                   
                         
                     </tr>
                     <tr>
                         <td colspan="4"></td>
-                        <th class="text-info fw-bold"> Order Status</th>
-                        <td colspan="3">
-                            @if ($aorder->status_message == 'Cancelled')
-                                <p class="text-danger fs-5  fw-bold">{{ $aorder->status_message }}</p>
-                            @elseif ($aorder->status_message == 'In Progress')
-                                <p class="text-white fs-5  fw-bold">{{ $aorder->status_message }}</p>
-                            @elseif ($aorder->status_message == 'Completed')
-                                <p class="text-success  fs-5 fw-bold">{{ $aorder->status_message }}</p>
-                            @elseif ($aorder->status_message == 'Pending')
-                                <p class="text-info  fs-5 fw-bold">{{ $aorder->status_message }}</p>
-                            @else
-                                <p class="text-primary  fs-5  fw-bold">{{ $aorder->status_message }}</p>
-                            @endif
-                        </td>
+                        <th class="text-info fw-bold">Payment Status</th>
+                        <td colspan="3">{{ $aorder->payment_status }}</td>
+                    </tr>
+                    <tr>
+
+                        <td colspan="4"></td>
+                        <th class="text-info fw-bold">Payment ID</th>
+                        <td colspan="3">{{ $aorder->payment_id == '' ? 'NULL' : $aorder->payment_id }}</td>
+                     
                     </tr>
                     <tr>
                         <th colspan="8" class="h2 text-start ">Update Order Status</th>

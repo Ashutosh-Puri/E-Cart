@@ -24,7 +24,8 @@ class AdminController extends Controller
         $brandcount=Brand::count();
         $colorcount=Color::count();
         $ordercount=Order::count();
-        $ordertoday=Order::whereDate('created_at',date('d-m-Y'))->count();
+        $ordertoday=Order::whereDate('created_at',date('Y-m-d
+        '))->count();
         $ordermonth=Order::whereMonth('created_at',date('m'))->count();
         $orderyear=Order::whereYear('created_at',date('Y'))->count();
         $totalusercount=User::count();

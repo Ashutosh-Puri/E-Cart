@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 @if (session()->has('s-status'))
         <div class="alert my-2 mx-2 alert-success d-flex align-items-center">
@@ -15,7 +14,6 @@
         <div class="table-responsive card-body">
             <table class="table bg-custom align-middle table-bordered ">
                 <thead class="bg-custom ">
-
                     <tr>
                         <th colspan="8">
                             <span class="h2 float-start">Order</span>
@@ -59,24 +57,28 @@
                         <td colspan="3">{{ $order->pincode }}</td>
                         <th class="text-info fw-bold">Payment Mode</th>
                         <td colspan="3">{{ $order->payment_mode }}</td>
-                        
                     </tr>
                     <tr>
                         <td colspan="4"></td>
                         <th class="text-info fw-bold"> Order Status</th>
                         <td colspan="3">
                             @if ($order->status_message == 'Cancelled')
-                                <p class="text-danger fs-5  fw-bold">{{ $order->status_message }}</p>
+                                <span class="text-danger fs-5  fw-bold">{{ $order->status_message }}</span>
                             @elseif ($order->status_message == 'In Progress')
-                                <p class="text-white fs-5  fw-bold">{{ $order->status_message }}</p>
+                                <span class="text-white fs-5  fw-bold">{{ $order->status_message }}</span>
                             @elseif ($order->status_message == 'Completed')
-                                <p class="text-success  fs-5 fw-bold">{{ $order->status_message }}</p>
+                                <span class="text-success  fs-5 fw-bold">{{ $order->status_message }}</span>
                             @elseif ($order->status_message == 'Pending')
-                                <p class="text-info  fs-5 fw-bold">{{ $order->status_message }}</p>
+                                <span class="text-info  fs-5 fw-bold">{{ $order->status_message }}</span>
                             @else
-                                <p class="text-primary  fs-5  fw-bold">{{ $order->status_message }}</p>
+                                <span class="text-primary  fs-5  fw-bold">{{ $order->status_message }}</span>
                             @endif
-                        </td>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td colspan="4"></td>
+                        <th class="text-info fw-bold">Payment Status</th>
+                        <td colspan="3">{{ $order->payment_status}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -98,14 +100,12 @@
                         <th class="text-info fw-bold">Product Color</th>
                         <th class="text-info fw-bold">Quantity</th>
                         <th class="text-info fw-bold">Price</th>
-
                     </tr>
                 </thead>
                 <tbody>
                     <?php $total = 0; ?>
                     @forelse ($order->orderItems as $o)
                         <tr>
-
                             <td>{{ $o->id }}</td>
                             <td>
                                 @if (isset($o->product->productImages[0]))
@@ -127,8 +127,6 @@
                             </td>
                             <td>{{ $o->quantity }}</td>
                             <td>&#8377; {{ $o->price }}</td>
-
-
                         </tr>
                         <?php $total += $o->quantity * $o->price; ?>
                     @empty
@@ -146,5 +144,4 @@
             </table>
         </div>
     </div> 
-
 @endsection

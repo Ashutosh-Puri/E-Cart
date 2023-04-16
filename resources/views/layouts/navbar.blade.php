@@ -77,7 +77,7 @@
                                 @endif
                                 
                                 <a class="nav-link {{ (request()->is('orders')) ? 'active' : '' }}" href="{{ url('orders') }}">  <i class="mx-2 fa fa-shopping-bag"> </i>My Orders</a>   
-                                <a class="nav-link {{ (request()->is('account')) ? 'active' : '' }}" href="{{ url('account') }}"> <i class="mx-2 fa  fa-user"> </i>My Account</a>                             
+                                <a class="nav-link {{ (request()->is('account')) ? 'active' : '' }}" href="{{ url('account/'.auth()->user()->id) }}"> <i class="mx-2 fa  fa-user"> </i>My Account</a>                             
                                 <a class="dropdown-item nav-link" href="{{ url('logout') }}"
                                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">

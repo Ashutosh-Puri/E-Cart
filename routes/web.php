@@ -1,15 +1,17 @@
 <?php
 
+use App\Http\Livewire\Checkout;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\CartController;
-use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\AOrderController;
 use App\Http\Controllers\User\ContactController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\UInvoiceController;
@@ -34,7 +36,7 @@ Auth::routes(['verify'=>true]);
 
 // admin routes
 Route::middleware(['auth','admin','verified'])->group( function () {
-
+    Route::get('uinvoice/{uinvoice}/mail',[UInvoiceController::class ,'mail']);
     Route::get('product/{id}/delete', [ProductController::class,'delete']);
     Route::resources([
         'category' => CategoryController::class,
@@ -49,7 +51,7 @@ Route::middleware(['auth','admin','verified'])->group( function () {
     
 // user routes
 Route::middleware(['auth','verified'])->group( function () {
-
+    Route::get('account/{user_id}',[ProfileController::class ,'index']);
     Route::resources([
         'orders'=> OrderController::class,
         'wishlist'=> WishlistController::class, 
@@ -57,7 +59,10 @@ Route::middleware(['auth','verified'])->group( function () {
         'checkout'=> CheckoutController::class,
         'uinvoice'=> UInvoiceController::class,
         'contact'=> ContactController::class,
-
+        
     ]);
+    Route::post('payment',[Checkout::class ,'payment'])->name('payment');
+
     
+
 });

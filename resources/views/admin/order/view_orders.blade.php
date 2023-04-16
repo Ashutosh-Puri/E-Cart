@@ -40,9 +40,11 @@
                         <th>ID</th>
                         <th>User Name</th>
                         <th>Date & Time</th>
-                        <th>Payment Mode</th>
-                        <th>Status</th>
+                        <th>Order Status</th>
                         <th>Tracking ID</th>
+                        <th>Payment Mode</th>
+                        <th>Payment Status</th>
+                        <th>Payment ID</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -55,9 +57,22 @@
                             <td>{{ $m++}}</td>
                             <td>{{ $o->fullname }}</td>
                             <td>{{ $o->created_at->format('d / m / Y - h : m : s A') }}</td>
-                            <td>{{ $o->payment_mode}}</td>
-                            <td>{{ $o->status_message}}</td>
+                           
+                            <td>@if ($o->status_message == 'Cancelled')
+                                <p class="text-danger fs-5  fw-bold">{{ $o->status_message }}</p>
+                            @elseif ($o->status_message == 'In Progress')
+                                <p class="text-white fs-5  fw-bold">{{ $o->status_message }}</p>
+                            @elseif ($o->status_message == 'Completed')
+                                <p class="text-success  fs-5 fw-bold">{{ $o->status_message }}</p>
+                            @elseif ($o->status_message == 'Pending')
+                                <p class="text-info  fs-5 fw-bold">{{ $o->status_message }}</p>
+                            @else
+                                <p class="text-primary  fs-5  fw-bold">{{ $o->status_message }}</p>
+                            @endif</td>
                             <td>{{ $o->tracking_no}}</td>
+                            <td>{{ $o->payment_mode}}</td>
+                            <td>{{ $o->payment_status}}</td>
+                            <td>{{ $o->payment_id==NULL?'-':$o->payment_id;}}</td>
                             <td><a href="{{ route('aorder.show',$o->id) }}" class="btn btn-warning">View</a></td>
                         </tr>
                     @empty

@@ -21,6 +21,7 @@ class Order extends Model
         'status_message',
         'payment_id',
         'payment_mode',
+        'payment_status',
     ];
   
     public function orderItems()

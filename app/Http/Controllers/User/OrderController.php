@@ -22,5 +22,12 @@ class OrderController extends Controller
     {   
         return view('user.show_orders',compact('order'));
     }
+
+    public function edit(Order $order)
+    {   
+        $order->status_message = "Cancelled";
+        $order->update();
+        return redirect()->back()->with('s-status','Order Cancelled Successfully');
+    }
 }
  

@@ -20,15 +20,13 @@
                 </td>
                 <td>
                     <div class="input-group  w-100" >
-                      
-                            <div class=" input-group-prepend input-group-text w-25 form-control-sm" >{{ $i->color_quantity  }}</div>
+                            <div class=" input-group-prepend   w-25 form-control-sm" >{{ $i->color_quantity  }}</div>
                             <input  type="text"     wire:model="color_quantity.{{ $i->id }}" class="form-control-sm   w-50 ">
                             <button type="button" wire:click="update({{ $i->id }},{{ $product->id }})"   class='btn btn-success btn-sm w-25 form-control-sm'  >Update</button>
-                        
-                        
-                        
-                        @error('color_quantity') <span class="error">{{ $message }}</span> @enderror
+
+                        @error('color_quantity') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
+                    
                 </td>
                 <td>
                     <button type="button"  wire:click="delete({{ $i->id }},{{ $product->id }})"   class='deleteproductcolorbtn btn btn-danger btn-sm'  >Delete</button>

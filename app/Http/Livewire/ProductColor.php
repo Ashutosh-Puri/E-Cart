@@ -8,8 +8,18 @@ use Livewire\Component;
 class ProductColor extends Component
 {   public $prod;
     public $color_quantity ;
+    
     protected $listeners = ['some-event' => '$refresh'];
+    protected $rules = [
+        'color_quantity'=>['required','integer',],
+       
+    ];
    
+    public function updated($propertyName)
+    {
+         
+        $this->validateOnly($propertyName);
+    }
    
     public function mount($pro)
     {
@@ -17,8 +27,8 @@ class ProductColor extends Component
     }
 
     public function update($cid ,$pid)
-    {
-       
+    {    
+
         $productcolor = Product::findOrFail($pid)->productColors()->where('id',$cid)->first();
         $productcolor->color_quantity=$this->color_quantity[$cid];
         $productcolor->update();

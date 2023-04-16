@@ -7,10 +7,13 @@ use App\Models\Product;
 use Livewire\Component;
 use App\Models\Wishlist;
 use App\Models\ProductColor;
+use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 
 class ProductDetails extends Component
 {   
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
     public $prod; 
     public $productColorQuantity;
     public $quantityCount=0;
@@ -155,6 +158,8 @@ class ProductDetails extends Component
 
     public function render()
     { 
-        return view('livewire.product-details',['product'=>$this->prod]);
+       
+        $relatedpoducts=Product::where('category_id',$this->prod[0]['category_id'])->paginate(4);
+        return view('livewire.product-details',['product'=>$this->prod ,'relatedpoducts'=>$relatedpoducts]);
     }
 }

@@ -90,7 +90,7 @@ CREATE TABLE `categories` (
   `icon` varchar(255) DEFAULT 'fas fa-circle',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ;
 
 --
 -- Dumping data for table `categories`

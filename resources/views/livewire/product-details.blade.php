@@ -161,6 +161,69 @@
 
     </div>
 </div>
+ <!-- Related Product Start -->
+ <div class="card m-1">
+    <div class="card-header bg-custom  px-5 py-3">
+        <h1>Related Products</h1>
+    </div>
+    <div class="card-body">
+        <div class="col-md-12 ">
+            <div class="row">
+                @forelse ($relatedpoducts as $p)
+                    <div class="col-md-3">
+                        <div class="bg-custom card my-1 product-card ">
+                            <div class=" card-header text-center fw-bold fs-5 p-0">
+                                <span
+                                    class=' mx-4 fs-5 text-warning float-start'>{{ $p->brands->name }}</span>
+                                    <span class="btn btn-danger btn-sm float-end">New</span>
+                                <br>
+                                <a
+                                    href="{{ url('viewproduct/' . $p->id) }}"class="text-decoration-none   text-white">{{ $p->name }}</a>
+                            </div>
+                            <div class="card-body"style="height: 300px;  width:100%;">
+                                @if (isset($p->productImages[0]))
+                                    <a href="{{ url('viewproduct/' . $p->id) }}">
+                                        <img src="{{ url($p->productImages[0]->image) }}"
+                                            alt="{{ $p->name }}" style="height: 300px;  width:100%;">
+                                    </a>
+                                @else
+                                    <a href="{{ url('viewproduct/' . $p->id) }}">
+                                        <img src="" alt="Image Not"
+                                            style="height: 300px;  width:100%;">
+                                    </a>
+                                @endif
+                            </div>
+                            <div class="p-4">
+                                <div class=" text-center my-2 ">
+                                    <span class="h3">
+                                        <span class="">&#8377;</span>{{ $p->selling_price }}
+                                    </span>&nbsp;
+                                    <span class="text-danger text-decoration-line-through">&#8377;
+                                        {{ $p->orignal_price }}</span>
 
+                                </div>
+                                {{-- <button type="button" wire:click="addToCart({{ $p->id }})" class="btn btn-custom mx-1" ><i class="fa fa-cart-plus"></i></button> --}}
+                                <button type="button" wire:click="addToWishlist({{ $p->id }})"
+                                    class="btn btn-custom mx-1"><i class="fa fa fa-heart"></i></button>
+
+                                {{-- <a href="#" class="btn btn-custom mx-1"><i class="fa fa-search"></i></a> --}}
+                                <a href="{{ url('viewproduct/' . $p->id) }}"
+                                    class="btn btn-custom float-end card-link">
+                                    <i class="fa fa-shopping-cart"></i> &nbsp; Buy Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="text-center h3">
+                        No Related Products Available
+                    </div>
+                @endforelse
+                {{ $relatedpoducts->links() }}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Related Product End -->
 </div>
 

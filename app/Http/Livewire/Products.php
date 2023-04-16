@@ -1,14 +1,11 @@
 <?php
-
 namespace App\Http\Livewire;
-
 use App\Models\Brand;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
-
 class Products extends Component
 {  
     public $category ;
@@ -17,11 +14,10 @@ class Products extends Component
     public $priceInputs=[];
     public $search="";
     protected $queryString =['brandInputs','categoryInputs','priceInputs','search'];
-   
+
     public function search($sear)
     {
         $this->search =$sear;
-
         return redirect()->to('productlist');
     }
    
@@ -41,8 +37,7 @@ class Products extends Component
     
                 ]);
                 session()->flash('s-status','Wishlist Added Successfully.');
-            }
-            
+            }    
         }
         else
         {   
