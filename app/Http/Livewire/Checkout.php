@@ -31,7 +31,7 @@ class Checkout extends Component
         'state'=>['required','string','max:150'],
         'pincode'=>['required','integer','digits:6'],
     ];
-    
+
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
@@ -57,7 +57,7 @@ class Checkout extends Component
     {    
         // $this->validate();
         $input = $request->all();
-        $api=new Api(env('API_KEY'),env('API_SECRET'));
+        $api=new Api(env('RAZORPAY_KEY_ID'),env('RAZORPAY_KEY_SECRET'));
         $payment=$api->payment->fetch($input['razorpay_payment_id']);
         if(count($input) && !empty($input['razorpay_payment_id']))
         {

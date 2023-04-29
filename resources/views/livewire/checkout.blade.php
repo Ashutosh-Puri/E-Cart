@@ -146,21 +146,57 @@
                         </div>
 
                         <div class="p-5" wire:ignore>
-                            <div class="w-100">
+                            <div class="w-100 mx-2">
                                 <div class="row">
                                     <div class="col-12 ">
                                         <h1>Payment Methods</h1>
-                                        {{ $visible }}
+                                    
 
                                     </div>
                                     <hr>
-                                </div>
+                                    <button  wire:loading.attr="disabled" wire:click="codOrder"
+                                    class="btn btn-warning fw-bold w-100">
+                                    <span wire:loading.remove wire:target="codOrder">Place Order ( COD )</span>
+                                    <span wire:loading wire:target="codOrder">Placing Order</span>
+                                </button>
+
+                                <form class="d-inline" action="{{ route('payment') }}" method="POST" >
+                                    @csrf
+                                    <input type="hidden" name="fullname" value="{{ $fullname }}">
+                                    <input type="hidden" name="email" value="{{ $email }}">
+                                    <input type="hidden" name="mobile" value="{{ $mobile }}">
+                                    <input type="hidden" name="address" value="{{ $address }}">
+                                    <input type="hidden" name="country" value="{{ $country }}">
+                                    <input type="hidden" name="pincode" value="{{ $pincode }}">
+                                    <input type="hidden" name="state" value="{{ $state}}">
+                                    <input type="hidden" name="city" value="{{ $city }}">
+                                    
+                                    <button data-payment_button_id="button_id" class=" btn fw-bold my-2 w-100 btn-success"> Pay  With Razorpay ( &#8377; {{ $grandtotal }} )</button>
+                                     
+                                    <script  src="https://checkout.razorpay.com/v1/checkout.js" 
+                                        data-key="{{ env('RAZORPAY_KEY_ID') }}"
+                                    
+                                        data-amount="{{ $grandtotal*100 }}" 
+                                        data-buttontext="" 
+                                        data-name="{{ env('APP_NAME') }}" 
+                                        data-description=" Test Payment" 
+                                        data-prefill.name="{{ $fullname }}"
+                                        data-prefill.email="{{ $email }}" 
+                                        data-prefill.contact="{{ $mobile }}"
+                                        data-notes.address="{{ $address . ',' . $city . ',' . $country . '.' }}" 
+                                        >
+                                    </script>
+                                   
+                                    
+                                    
+                                </form>
+                                {{-- </div>
                             
                                                 <div class="d-inline" >
-                                                    <div class=" d-inline nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                    <div class=" d-inline  mb-3" id="pills-tab" role="tablist">
                                                     
-                                                        <div class="d-inline nav-item" role="presentation">
-                                                          <button wire:click="mod('Card')"  class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+                                                        <div class="d-inline nav-item w-100" role="presentation">
+                                                          <button wire:click="mod('Card')"  class="btn btn-warning fw-bold d-inline" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Pay With Razorpay</button>
                                                         </div>
                                                       
                                                     </div>
@@ -183,7 +219,7 @@
                                                                 <button data-payment_button_id="button_id" class=" d-inline btn btn-success"> Pay  With Razorpay ( &#8377; {{ $grandtotal }} )</button>
                                                                  
                                                                 <script class="d-inline" src="https://checkout.razorpay.com/v1/checkout.js" 
-                                                                    data-key="{{ env('API_KEY') }}"
+                                                                    data-key="{{ env('RAZORPAY_KEY_ID') }}"
                                                                 
                                                                     data-amount="{{ $grandtotal*100 }}" 
                                                                     data-buttontext="" 
@@ -204,11 +240,7 @@
                               
                                                       </div>
                                                 </div>
-                                                <button  wire:loading.attr="disabled" wire:click="codOrder"
-                                                    class="btn btn-warning fw-bold d-inline">
-                                                    <span wire:loading.remove wire:target="codOrder">Place Order ( COD )</span>
-                                                    <span wire:loading wire:target="codOrder">Placing Order</span>
-                                                </button>
+                                                --}}
                                                 
                                                 
                                                 
